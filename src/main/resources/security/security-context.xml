@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+	
+
+	<!-- 아래의 URL 패턴은 관여하지 않음. -->
+	<security:http pattern="/resources/**" security="none" />
+	<security:http pattern="/*.html" security="none" />
+	<security:http pattern="/js/**" security="none" />
+	<security:http pattern="/img/*" security="none" />
+
+
+	<security:http auto-config="true" disable-url-rewriting="true" use-expressions="true"  access-denied-page="/denied.jsp">
+		<security:intercept-url pattern="/favicon.ico" access="ROLE_ANONYMOUS" />
+		<security:intercept-url pattern="/main/login.*" access="permitAll" />
+		<security:intercept-url pattern="/login.ajax" access="permitAll" />				
+		<security:intercept-url pattern="/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
+		<security:form-login login-page="/main/login.do"
+			username-parameter="adminId"
+			password-parameter="passwd"
+			login-processing-url="/login.ajax" default-target-url="/main/main.do"
+			authentication-success-handler-ref="loginSuccessHandler"
+			authentication-failure-handler-ref="loginFailureHandler" />
+		<security:logout invalidate-session="true"
+			logout-url="/logout"
+			logout-success-url="/main/login.do"
+			delete-cookies="JSESSIONID,SPRING_SECURITY_REMEMBER_ME_COOKIE"
+			 />
+		<security:remember-me key="myAppKey"  remember-me-parameter="remember-me" token-validity-seconds="2419200" user-service-ref="authenService"/>
+	</security:http>
+	
+	<bean id="authenService" class="com.ksign.access.auth.AuthenService"/>
+
+
+	<!-- 로그인 성공시 핸들러 -->
+	<bean id="loginSuccessHandler" class="com.ksign.access.auth.handler.LoginSuccessHandler" />
+	<!-- 로그인 실패시 핸들러 -->
+	<bean id="loginFailureHandler" class="com.ksign.access.auth.handler.LoginFailureHandler" />
+
+	<!-- 비밀번호 비교 -->
+	<bean id="passwordEncoder" class="com.ksign.access.auth.AdminPasswordEncoder" />
+
+	<bean id="customAuthenticationProvider" class="com.ksign.access.auth.CustomAuthenProvider" />
+	<!-- <security:authentication-manager alias="authenticationManager">
+		<security:authentication-provider user-service-ref="authenService">
+			<security:password-encoder ref="passwordEncoder" />
+		</security:authentication-provider>
+	</security:authentication-manager> -->
+
+	<security:authentication-manager alias="authenticationManager">
+		<security:authentication-provider ref="customAuthenticationProvider">
+		</security:authentication-provider>
+
+
+
+		<!-- <security:authentication-provider user-service-ref="authenService">
+			<security:password-encoder ref="passwordEncoder" />
+		</security:authentication-provider> -->
+	</security:authentication-manager>
+	
+</beans>

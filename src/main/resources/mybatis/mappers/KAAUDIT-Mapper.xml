@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ksign.access.mapper.KAAuditMapper">
+
+	<!-- <resultMap type="KAAuditVO" id="kaAuditVO">
+		<id column="auditOId" property="auditOId" />
+
+		<result column="event_date" property="event_date" />
+		<result column="audit_type" property="audit_type" />
+		<result column="event_code" property="event_code" />
+		<result column="userId" property="userId" />
+		<result column="userName" property="userName" />
+		<result column="clientIp" property="clientIp" />
+		<result column="serverName" property="serverName" />
+		<result column="authenMethod" property="authenMethod" />
+		<result column="resName" property="resName" />
+		<result column="resultCode" property="resultCode" />
+		<result column="detailInfo" property="detailInfo" />
+	</resultMap> -->
+
+	<sql id="kaauditCol">
+		TO_CHAR(ka.AUDITOID) AS "auditOId",
+		ka.EVENT_DATE AS "event_date",
+		ka.EVENT_CODE AS "event_code",
+		ka.AUDIT_TYPE AS "audit_type",
+		ka.USERID AS "userId",
+		ka.USERNAME AS "userName",
+		ka.CLIENTIP AS "clientIp",
+		ka.SERVERNAME AS "serverName",
+		ka.AUTHENMETHOD AS "authenMethod",
+		ka.RESNAME AS "resName",
+		ka.RESULTCODE AS "resultCode",
+		ka.DETAILINFO AS "detailInfo"
+	</sql>
+
+	<select id="selectKAAuditListCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT COUNT(*) FROM kaaudit ka
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="auditOid != null and auditOid !=''">
+				ka.auditoid = #{auditOid}
+			</if>
+
+			<if test="eventCode != null and eventCode !=''">
+				ka.EVENT_CODE = #{eventCode}
+			</if>
+
+			<if test="s_value != null and s_value !=''">
+				ka.userId like '%${s_value}%'
+			</if>
+		</trim>
+		order by ${orderBy}
+	</select>
+
+	<select id="selectKAAuditList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT * FROM (
+		SELECT A.*,
+		ROWNUM AS RNUM,
+		FLOOR((ROWNUM-1)/${pageSize}+1) AS PAGE,
+		COUNT(*) OVER() AS TOTCNT FROM (
+		SELECT
+		<include refid="kaauditCol" />
+		FROM kaaudit ka
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="auditOid != null and auditOid !=''">
+				ka.auditoid = #{auditOid}
+			</if>
+
+			<if test="eventCode != null and eventCode !=''">
+				ka.EVENT_CODE = #{eventCode}
+			</if>
+
+			<if test="s_value != null and s_value !=''">
+				ka.userId like '%${s_value}%'
+			</if>
+		</trim>
+		order by ${orderBy}
+		) A
+		) WHERE 1 = 1
+		<if test="pageNo != null and pageNo !=''">
+			AND PAGE = ${pageNo}
+		</if>
+	</select>
+</mapper>

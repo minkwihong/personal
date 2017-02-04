@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.ksign.access.mapper.KAStatisticMapper">
+	<sql id="sessionColAS">
+		A.LABEL AS "label",
+		A.VALUE AS "value"
+	</sql>
+
+
+	<select id="selectKAStatisticDunutList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT SERVERNAME AS "label" ,COUNT(*) AS "value" from KAAUDIT A
+		GROUP BY SERVERNAME
+	</select>
+
+	<select id="selectKAAgentList"  resultType="string">
+		SELECT SERVERNAME FROM KAAUDIT
+		GROUP BY SERVERNAME
+	</select>
+
+	<select id="selectKAStatisticAreaList"  parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT B.y,
+		<foreach collection="agentList" item="item" index="index" separator="," >
+			SUM(CASE B.servername WHEN '${item}' THEN B.CNT ELSE 0 END) AS "${item}"
+		</foreach>
+		FROM(
+		SELECT TO_CHAR(event_date,'YYYY DD')y,servername,COUNT(*) AS "CNT" from KAAUDIT
+		GROUP BY  TO_CHAR(event_date,'YYYY DD'),servername
+
+		)B
+		GROUP BY B.y
+	</select>
+
+
+
+
+
+</mapper>

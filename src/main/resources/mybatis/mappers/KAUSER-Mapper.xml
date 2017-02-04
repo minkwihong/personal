@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ksign.access.mapper.KAUserMapper">
+
+	<sql id="userColAS">
+		U.USERID AS "userId",
+		U.NAME AS "name",
+		U.PASSWORD AS "password",
+		U.OUDN AS "u_oudn",
+		U.TITLE AS "title",
+		U.EMAIL AS "email",
+		U.MOBILE AS "mobile",
+		U.DESCRIPTION AS "description",
+		U.DEACTIVATED AS "deactivated",
+		U.LASTLOGINTIME AS "lastLoginTime"
+	</sql>
+
+	<sql id="userCol">
+		U.USERID ,
+		U.NAME ,
+		U.PASSWORD ,
+		U.OUDN ,
+		U.TITLE ,
+		U.EMAIL,
+		U.MOBILE ,
+		U.DESCRIPTION ,
+		U.DEACTIVATED ,
+		U.LASTLOGINTIME
+	</sql>
+	
+	<sql id="userCertColAS">
+		C.CERTDN AS "certDn"
+	</sql>
+
+	<sql id="userCertCol">
+		C.CERTDN
+	</sql>
+
+
+
+ 	<select id="selectKAUserListCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT COUNT(*) FROM KAUSER U
+			JOIN KAOU OU ON U.OUDN = OU.OUDN
+  			LEFT JOIN KAUSERCERT C ON U.USERID = C.USERID
+				<trim prefix="WHERE" prefixOverrides="AND |OR ">
+					<if test="userId != null and userId !=''">
+						U.USERID = #{userId}
+					</if>
+		
+					<if test="name != null and name !=''">
+						U.NAME LIKE '%${name}%'
+					</if>
+				</trim>
+		order by U.${orderBy}
+	</select>
+	
+	<select id="selectKAUserList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT * FROM (
+			SELECT A.*,
+				ROWNUM AS RNUM,
+				FLOOR((ROWNUM-1)/${pageSize}+1) AS PAGE,
+				COUNT(*) OVER() AS TOTCNT FROM (
+					SELECT 
+						<include refid="userColAS" />,
+						<include refid="userCertColAS" />
+					FROM KAUSER U
+						JOIN KAOU OU ON U.OUDN = OU.OUDN
+  						LEFT JOIN KAUSERCERT C ON U.USERID = C.USERID
+							<trim prefix="WHERE" prefixOverrides="AND |OR ">
+								<if test="userId != null and userId !=''">
+									U.USERID = #{userId}
+								</if>
+					
+								<if test="name != null and name !=''">
+									U.NAME LIKE '%${name}%'
+								</if>
+							</trim>
+					order by U.${orderBy}
+				) A
+			) WHERE 1 = 1
+			<if test="pageNo != null and pageNo !=''">
+				AND PAGE = ${pageNo}
+			</if>
+	</select>
+	
+	<select id="selectKAUser" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+			SELECT 
+				<include refid="userColAS" />,
+				<include refid="userCertColAS" />
+			FROM KAUSER U
+				JOIN KAOU OU ON U.OUDN = OU.OUDN
+				LEFT JOIN KAUSERCERT C ON U.USERID = C.USERID
+			WHERE
+				U.USERID = #{userId}
+	</select>
+	
+	<update id="updateKAUser" parameterType="java.util.HashMap">
+			UPDATE KAUSER U SET  U.USERID = #{userId}, U.NAME = #{name}, U.OUDN = #{oudn}, U.TITLE = #{title} 
+			WHERE
+				U.USERID = #{userId}
+	</update>
+	
+	<update id="registKAUser" parameterType="java.util.HashMap">
+			INSERT INTO KAUSER U(
+				<include refid="userCol" />
+			)
+			VALUES(
+				#{userId},
+				#{name},
+				#{password},
+				#{oudn},
+				#{title},
+				#{email},
+				#{mobile},
+				#{description},
+				#{deactivated},
+				sysdate
+			)
+	</update>
+
+	<select id="selectKAUserDupCheck" parameterType="java.util.HashMap" resultType="int">
+		SELECT COUNT(*) FROM KAUSER U
+		JOIN KAOU OU ON U.OUDN = OU.OUDN
+		LEFT JOIN KAUSERCERT C ON U.USERID = C.USERID
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="userId != null and userId !=''">
+				U.USERID LIKE '%${userId}%'
+			</if>
+
+			<if test="name != null and name !=''">
+				AND U.NAME LIKE '%${name}%'
+			</if>
+		</trim>
+	</select>
+
+</mapper>

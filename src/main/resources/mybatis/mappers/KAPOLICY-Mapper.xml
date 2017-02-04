@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.ksign.access.mapper.KAPolicyMapper">
+	<sql id="policyGrpColAS">
+		A.NAME AS "name",
+		A.GRP_DESC AS "grpDesc"
+	</sql>
+
+	<sql id="policyGrpCol">
+		A.NAME ,
+		A.GRP_DESC
+	</sql>
+
+	<sql id="policyMappColAS">
+		A.GROUP_NAME AS "grpName",
+		A.POLICY_NAME AS "policyName",
+		A.MODDATE AS "modDate"
+	</sql>
+
+	<sql id="policyMappCol">
+		A.GROUP_NAME ,
+		A.POLICY_NAME,
+		A.MODDATE
+	</sql>
+
+	<sql id="policyColAS">
+		A.NAME AS "name",
+		A.TYPE AS "type",
+		A.EFFECT AS "effect",
+		A.RULE AS "rule",
+		A.MODDATE AS "modDate",
+		A.POL_DESC AS "polDesc"
+	</sql>
+
+	<sql id="policyCol">
+		A.NAME ,
+		A.TYPE ,
+		A.EFFECT ,
+		A.RULE ,
+		A.MODDATE ,
+		A.POL_DESC
+	</sql>
+
+	<sql id="userColAS">
+		A.USERID AS "userId",
+		A.NAME AS "name",
+		A.NAME AS "passwordReset",
+		A.OUDN AS "u_oudn",
+		A.TITLE AS "title",
+		A.EMAIL AS "email",
+		A.MOBILE AS "mobile",
+		A.DESCRIPTION AS "description",
+		A.DEACTIVATED AS "deactivated",
+		A.LASTLOGINTIME AS "lastLoginTime"
+
+	</sql>
+
+	<sql id="userMappColAS">
+		A.USER_ID AS "user_id",
+		A.NAME AS "name",
+		A.MODDATE AS "modDate"
+	</sql>
+
+	<sql id="userMappCol">
+		A.USER_ID ,
+		A.NAME ,
+		A.MODDATE
+	</sql>
+
+
+	<select id="selectKAPolicyGrpListCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT COUNT(*) FROM KA_POLICY_GROUP A
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="name != null and name !=''">
+				A.NAME = #{name}
+			</if>
+		</trim>
+		<if test="sidx != null and sidx !=''">
+			order by A.${sidx} ${sord}
+		</if>
+	</select>
+
+	<select id="selectKAPolicyGrpList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT * FROM (
+		SELECT A.*,
+		ROWNUM AS RNUM,
+		FLOOR((ROWNUM-1)/${rows}+1) AS PAGE,
+		COUNT(*) OVER() AS TOTCNT FROM (
+		SELECT
+		<include refid="policyGrpColAS" />
+		FROM KA_POLICY_GROUP A
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="name != null and name !=''">
+				A.NAME = #{name}
+			</if>
+		</trim>
+		<if test="sidx != null and sidx !=''">
+			order by A.${sidx} ${sord}
+		</if>
+		) A
+		) WHERE 1 = 1
+		<if test="page != null and page !=''">
+			AND PAGE = ${page}
+		</if>
+	</select>
+
+
+	<select id="selectKAPolicyMappingListCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT COUNT(*) FROM KA_POLICY_MAPPING A
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="group_Name != null and group_Name !=''">
+				A.GROUP_NAME = #{group_Name}
+			</if>
+
+		</trim>
+		<if test="sidx != null and sidx !=''">
+			order by A.${sidx} ${sord}
+		</if>
+	</select>
+
+	<select id="selectKAPolicyMappingList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT * FROM (
+		SELECT A.*,
+		ROWNUM AS RNUM,
+		FLOOR((ROWNUM-1)/${rows}+1) AS PAGE,
+		COUNT(*) OVER() AS TOTCNT FROM (
+		SELECT
+		<include refid="policyMappColAS" />
+		FROM KA_POLICY_MAPPING A
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="group_Name != null and group_Name !=''">
+				A.GROUP_NAME = #{group_Name}
+			</if>
+
+
+		</trim>
+		<if test="sidx != null and sidx !=''">
+			order by A.${sidx} ${sord}
+		</if>
+		) A
+		) WHERE 1 = 1
+		<if test="page != null and page !=''">
+			AND PAGE = ${page}
+		</if>
+	</select>
+
+	<update id="registKAPolicyMapping">
+		INSERT INTO KA_POLICY_MAPPING A(
+			<include refid="policyMappCol" />
+		)VALUES(
+			#{grpName},
+			#{policyName},
+		sysdate
+		)
+	</update>
+
+	<select id="selectKAPolicyListCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT COUNT(*) FROM KA_ACCESS_POLICY A
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="name != null and name !=''">
+				A.NAME = #{name}
+			</if>
+
+		</trim>
+		<if test="sidx != null and sidx !=''">
+			order by A.${sidx} ${sord}
+		</if>
+	</select>
+
+	<select id="selectKAPolicyList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT * FROM (
+		SELECT A.*,
+		ROWNUM AS RNUM,
+		FLOOR((ROWNUM-1)/${rows}+1) AS PAGE,
+		COUNT(*) OVER() AS TOTCNT FROM (
+		SELECT
+		<include refid="policyColAS" />
+		FROM KA_ACCESS_POLICY A
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="name != null and name !=''">
+				A.NAME = #{name}
+			</if>
+
+
+		</trim>
+		<if test="sidx != null and sidx !=''">
+			order by A.${sidx} ${sord}
+		</if>
+		) A
+		) WHERE 1 = 1
+		<if test="page != null and page !=''">
+			AND PAGE = ${page}
+		</if>
+	</select>
+
+	<select id="selectKAUserListCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT COUNT(*) FROM KAUSER A
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="name != null and name !=''">
+				A.NAME = #{name}
+			</if>
+
+			<if test="userId != null and userId !=''">
+				A.USERID = #{userId}
+			</if>
+
+		</trim>
+		<if test="sidx != null and sidx !=''">
+			order by A.${sidx} ${sord}
+		</if>
+	</select>
+
+	<select id="selectKAUserList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT * FROM (
+		SELECT A.*,
+		ROWNUM AS RNUM,
+		FLOOR((ROWNUM-1)/${rows}+1) AS PAGE,
+		COUNT(*) OVER() AS TOTCNT FROM (
+		SELECT
+		<include refid="userColAS" />
+		FROM KAUSER A
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="name != null and name !=''">
+				A.NAME = #{name}
+			</if>
+
+			<if test="userId != null and userId !=''">
+				A.USERID = #{userId}
+			</if>
+
+		</trim>
+		<if test="sidx != null and sidx !=''">
+			order by A.${sidx} ${sord}
+		</if>
+		) A
+		) WHERE 1 = 1
+		<if test="page != null and page !=''">
+			AND PAGE = ${page}
+		</if>
+	</select>
+
+	<select id="selectKAUserGrpMappingListCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT COUNT(*) FROM KA_POLICY_GROUP_MAPPING A
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="name != null and name !=''">
+				A.NAME = #{name}
+			</if>
+
+			<if test="user_id != null and user_id !=''">
+				A.USER_ID = #{user_id}
+			</if>
+
+		</trim>
+		<if test="sidx != null and sidx !=''">
+			order by A.${sidx} ${sord}
+		</if>
+	</select>
+
+	<select id="selectKAUserGrpMappingList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT * FROM (
+		SELECT A.*,
+		ROWNUM AS RNUM,
+		FLOOR((ROWNUM-1)/${rows}+1) AS PAGE,
+		COUNT(*) OVER() AS TOTCNT FROM (
+		SELECT
+		<include refid="userMappColAS" />
+		FROM KA_POLICY_GROUP_MAPPING A
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="name != null and name !=''">
+				A.NAME = #{name}
+			</if>
+
+			<if test="user_id != null and user_id !=''">
+				A.USER_ID = #{user_id}
+			</if>
+
+		</trim>
+		<if test="sidx != null and sidx !=''">
+			order by A.${sidx} ${sord}
+		</if>
+		) A
+		) WHERE 1 = 1
+		<if test="page != null and page !=''">
+			AND PAGE = ${page}
+		</if>
+	</select>
+
+	<update id="registKAPolicyGrpMapping">
+		INSERT INTO KA_POLICY_GROUP_MAPPING A(
+		<include refid="userMappCol" />
+		)VALUES(
+		#{user_id},
+		#{name},
+		sysdate
+		)
+	</update>
+
+
+	<select id="selectKAPolicyGrpTListCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT COUNT(*) FROM KA_POLICY_GROUP A
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="name != null and name !=''">
+				A.NAME = #{name}
+			</if>
+
+		</trim>
+		order by A.${orderBy}
+	</select>
+
+	<select id="selectKAPolicyGrpTList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT * FROM (
+		SELECT A.*,
+		ROWNUM AS RNUM,
+		FLOOR((ROWNUM-1)/${pageSize}+1) AS PAGE,
+		COUNT(*) OVER() AS TOTCNT FROM (
+		SELECT
+		<include refid="policyGrpColAS" />
+		FROM KA_POLICY_GROUP A
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="name != null and name !=''">
+				A.NAME = #{name}
+			</if>
+		</trim>
+		order by A.${orderBy}
+		) A
+		) WHERE 1 = 1
+		<if test="pageNo != null and pageNo !=''">
+			AND PAGE = ${pageNo}
+		</if>
+	</select>
+
+
+	<select id="selectKAPolicyTListCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT COUNT(*) FROM KA_ACCESS_POLICY A
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="name != null and name !=''">
+				A.NAME = #{name}
+			</if>
+
+		</trim>
+		order by A.${orderBy}
+	</select>
+
+	<select id="selectKAPolicyTList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT * FROM (
+		SELECT A.*,
+		ROWNUM AS RNUM,
+		FLOOR((ROWNUM-1)/${pageSize}+1) AS PAGE,
+		COUNT(*) OVER() AS TOTCNT FROM (
+		SELECT
+		<include refid="policyColAS" />
+		FROM KA_ACCESS_POLICY A
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="name != null and name !=''">
+				A.NAME = #{name}
+			</if>
+		</trim>
+		order by A.${orderBy}
+		) A
+		) WHERE 1 = 1
+		<if test="pageNo != null and pageNo !=''">
+			AND PAGE = ${pageNo}
+		</if>
+	</select>
+
+
+	<update id="updateKAPolicyGrp" parameterType="java.util.HashMap" >
+		UPDATE KA_POLICY_GROUP A SET  A.GRP_DESC = #{grpDesc},
+		A.MODDATE = sysdate
+		WHERE A.NAME = #{name}
+	</update>
+
+
+	<select id="selectKAPolicyGrpInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT
+		<include refid="policyGrpColAS" />
+		FROM KA_POLICY_GROUP A
+		WHERE A.NAME = #{name}
+	</select>
+
+
+	<update id="registKAPolicyGrp" parameterType="java.util.HashMap" >
+		INSERT INTO KA_POLICY_GROUP A(
+		<include refid="policyGrpCol" />
+		)
+		VALUES (
+		#{name} ,
+		#{grpDesc}
+		)
+
+	</update>
+
+
+	<select id="dulCheckKAPolicyGrp" parameterType="java.util.HashMap" resultType="int">
+		SELECT COUNT(*) FROM KA_POLICY_GROUP A
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="name != null and name !=''">
+				A.NAME = #{name}
+			</if>
+		</trim>
+	</select>
+
+
+	<update id="updateKAPolicy" parameterType="java.util.HashMap" >
+		UPDATE KA_ACCESS_POLICY A SET A.NAME  = #{name}, A.TYPE = #{type}, A.effect = #{effect}, A.RULE = #{rule}, A.POL_DESC = #{polDesc},
+		A.MODDATE = sysdate
+		WHERE A.NAME = #{name}
+	</update>
+
+
+	<select id="selectKAPolicyInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT
+		<include refid="policyColAS" />
+		FROM KA_ACCESS_POLICY A
+		WHERE A.NAME = #{name}
+	</select>
+
+
+	<select id="dulCheckKAPolicy" parameterType="java.util.HashMap" resultType="int">
+		SELECT COUNT(*) FROM KA_ACCESS_POLICY A
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="name != null and name !=''">
+				A.NAME = #{name}
+			</if>
+		</trim>
+	</select>
+
+	<update id="registKAPolicy">
+		INSERT INTO KA_ACCESS_POLICY A(
+		<include refid="policyCol" />
+		)VALUES(
+		#{name},
+		#{type},
+		#{effect},
+		#{rule},
+		sysdate,
+		#{polDesc}
+		)
+	</update>
+</mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>application-properties</comment>
+    
+    <!-- Local -->
+    <entry key="database.driverClassName">oracle.jdbc.driver.OracleDriver</entry>
+    <entry key="database.url">jdbc:oracle:thin:@192.168.56.101:1521:ORCL</entry>
+    <entry key="database.username">ssoadmin</entry>
+    <entry key="database.password">ssoadmin</entry>
+    <!-- dev-->
+    <!--<entry key="database.driverClassName">oracle.jdbc.driver.OracleDriver</entry>
+    <entry key="database.url">jdbc:oracle:thin:@10.20.20.39:1529:EPD</entry>
+    <entry key="database.username">ssotest</entry>
+    <entry key="database.password">ssotest</entry>-->
+    <entry key="validation.query">select 1 from dual</entry>
+    <entry key="max.active">5</entry>
+    <entry key="max.idle">5</entry>
+    
+    <entry key="max.wait">10</entry>
+    <entry key="remove.abandoned">true</entry>
+    
+    <entry key="remove.abandoned.timeout">60</entry>
+    <entry key="initial.size">5</entry>
+</properties>

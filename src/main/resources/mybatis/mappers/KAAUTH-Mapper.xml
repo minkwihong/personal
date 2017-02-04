@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ksign.access.mapper.KAAuthMapper">
+	<sql id="adminCol">
+		a.USERID AS "userId",
+		a.NAME AS "name",
+		a.PASSWORD AS "password",
+		a.PASSWORDRESET AS "passwordReset",
+		a.DEACTIVATED AS "deActivated",
+		a.ALLOWEDIP AS "allowedIp",
+		a.TITLE AS "title",
+		a.EMAIL AS "email",
+		a.MOBILE AS "mobile",
+		a.DESCRIPTION AS "description",
+		a.DEACTIVATED AS "deactivated",
+		a.LASTLOGINTIME AS "lastLoginTime"
+	</sql>
+
+	<select id="selectKAAdminById" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT
+		<include refid="adminCol" />
+		FROM KAAdmin a
+		WHERE a.userId = #{userId}
+	</select>
+</mapper>

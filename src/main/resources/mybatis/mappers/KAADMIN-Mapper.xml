@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.ksign.access.mapper.KAAdminMapper">
+	<sql id="adminColAS">
+		A.USERID AS "userId",
+		A.NAME AS "name",
+		A.PASSWORD AS "password",
+		A.PASSWORDRESET AS "passwordReset",
+		A.DEACTIVATED AS "deActivated",
+		A.ALLOWEDIP AS "allowedIp",
+		A.TITLE AS "title",
+		A.EMAIL AS "email",
+		A.TELEPHONENUMBER AS "telephoneNumber",
+		A.DESCRIPTION AS "description",
+		A.DEACTIVATED AS "deactivated",
+		A.LASTLOGINTIME AS "lastLoginTime"
+	</sql>
+
+	<sql id="adminCol">
+		A.USERID ,
+		A.NAME ,
+		A.PASSWORD ,
+		A.PASSWORDRESET ,
+		A.DEACTIVATED ,
+		A.ALLOWEDIP ,
+		A.TITLE ,
+		A.EMAIL ,
+		A.TELEPHONENUMBER ,
+		A.DESCRIPTION ,
+		A.LASTLOGINTIME
+	</sql>
+
+	<sql id="serverColAS">
+		A.SERVERNAME AS "serverName",
+		A.TYPE AS "type",
+		A.IP AS "ip",
+		A.PORT AS "port",
+		A.URL AS "url",
+		A.GID AS "gid",
+		A.CERTDN AS "certdn",
+		A.USABLE_AGENT AS "usableAgent",
+		A.MOD_DATE AS "modDate"
+	</sql>
+
+	<sql id="serverCol">
+		A.SERVERNAME ,
+		A.TYPE ,
+		A.IP ,
+		A.PORT ,
+		A.URL ,
+		A.GID ,
+		A.CERTDN ,
+		A.USABLE_AGENT ,
+		A.MOD_DATE
+	</sql>
+
+
+	<select id="selectKAAdminListCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT COUNT(*) FROM KAADMIN A
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="userId != null and userId !=''">
+				A.USERID = #{userId}
+			</if>
+
+			<if test="name != null and name !=''">
+				A.NAME LIKE '%${name}%'
+			</if>
+		</trim>
+		order by A.${orderBy}
+	</select>
+
+	<select id="selectKAAdminList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT * FROM (
+		SELECT A.*,
+		ROWNUM AS RNUM,
+		FLOOR((ROWNUM-1)/${pageSize}+1) AS PAGE,
+		COUNT(*) OVER() AS TOTCNT FROM (
+		SELECT
+		<include refid="adminColAS" />
+		FROM KAADMIN A
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="userId != null and userId !=''">
+				A.USERID = #{userId}
+			</if>
+
+			<if test="name != null and name !=''">
+				A.NAME LIKE '%${name}%'
+			</if>
+		</trim>
+		order by A.${orderBy}
+		) A
+		) WHERE 1 = 1
+		<if test="pageNo != null and pageNo !=''">
+			AND PAGE = ${pageNo}
+		</if>
+	</select>
+
+    <select id="selectKAAdminById" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+       SELECT 
+       		<include refid="adminColAS" />
+       FROM KAADMIN A
+	   WHERE A.userId = #{userId}
+    </select>
+
+
+	<select id="selectKAAdmin" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT
+		<include refid="adminColAS" />
+		FROM KAADMIN A
+		WHERE A.userId = #{userId}
+	</select>
+
+	<update id="updateKAAdmin" parameterType="java.util.HashMap" >
+		UPDATE KAADMIN A SET A.USERID = #{userId}, A.NAME = #{name}, A.PASSWORD = #{password}, A.ALLOWEDIP = #{allowedIp}, A.TITLE = #{title}, A.email = #{email},
+		A.MOBILE = #{mobile} , A.DESCRIPTION = #{description}
+		WHERE A.userId = #{userId}
+	</update>
+
+	<update id="registKAAdmin" parameterType="java.util.HashMap" >
+		INSERT INTO KAADMIN A(
+		<include refid="adminCol" />
+		)
+		VALUES (
+		#{userId} ,
+		#{name} ,
+		#{password},
+		#{passwordReset},
+		#{deactivated} ,
+		#{allowedIp},
+		#{title},
+		#{email} ,
+		#{telephoneNumber},
+		#{description},
+		sysdate
+		)
+
+	</update>
+
+
+	<select id="dulCheckKAAdmin" parameterType="java.util.HashMap" resultType="int">
+		SELECT COUNT(*) FROM KAADMIN A
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="userId != null and userId !=''">
+				A.USERID LIKE '%${userId}%'
+			</if>
+		</trim>
+	</select>
+
+
+	<select id="selectKAServerListCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT COUNT(*) FROM KASERVER A
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="serverName != null and serverName !=''">
+				A.SERVERNAME = #{serverName}
+			</if>
+
+		</trim>
+		order by A.${orderBy}
+	</select>
+
+	<select id="selectKAServerList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT * FROM (
+		SELECT A.*,
+		ROWNUM AS RNUM,
+		FLOOR((ROWNUM-1)/${pageSize}+1) AS PAGE,
+		COUNT(*) OVER() AS TOTCNT FROM (
+		SELECT
+		<include refid="serverColAS" />
+		FROM KASERVER A
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="serverName != null and serverName !=''">
+				A.SERVERNAME = #{serverName}
+			</if>
+		</trim>
+		order by A.${orderBy}
+		) A
+		) WHERE 1 = 1
+		<if test="pageNo != null and pageNo !=''">
+			AND PAGE = ${pageNo}
+		</if>
+	</select>
+
+	<select id="selectKAServer" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT
+		<include refid="serverColAS" />
+		FROM KASERVER A
+		WHERE A.SERVERNAME = #{serverName}
+	</select>
+
+
+	<update id="updateKAServer" parameterType="java.util.HashMap" >
+		UPDATE KASERVER A SET A.TYPE  = #{name}, A.IP = #{ip}, A.PORT = #{port}, A.URL = #{url}, A.GID = #{gid},
+		A.CERTDN = #{certdn} , A.USABLE_AGENT = #{usableAgent},A.MOD_DATE = sysdate
+		WHERE A.SERVERNAME = #{serverName}
+	</update>
+
+
+	<select id="dulCheckKAServer" parameterType="java.util.HashMap" resultType="int">
+		SELECT COUNT(*) FROM KASERVER A
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="serverName != null and serverName !=''">
+				A.SERVERNAME = #{serverName}
+			</if>
+		</trim>
+	</select>
+
+
+	<update id="registKAServer" parameterType="java.util.HashMap" >
+		INSERT INTO KASERVER A(
+		<include refid="serverCol" />
+		)
+		VALUES (
+		#{serverName} ,
+		#{type} ,
+		#{ip},
+		#{port},
+		#{url} ,
+		#{gid},
+		#{certdn},
+		#{usableAgent} ,
+		sysdate
+		)
+
+	</update>
+</mapper>
