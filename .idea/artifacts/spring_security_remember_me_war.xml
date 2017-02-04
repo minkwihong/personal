@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="spring-security-remember-me:war">
+    <output-path>$USER_HOME$/Downloads/spring-security-remember-me/target</output-path>
+    <root id="archive" name="SpringSecurity.war">
+      <element id="artifact" artifact-name="spring-security-remember-me:war exploded" />
+    </root>
+  </artifact>
+</component>

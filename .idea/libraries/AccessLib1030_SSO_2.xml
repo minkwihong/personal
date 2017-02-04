@@ -1,0 +1,30 @@
+<component name="libraryTable">
+  <library name="AccessLib1030_SSO_2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../sso/KSignAccessServer/WebContent/WEB-INF/lib/AccessLib1030_SSO_2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../sso/KSignAccessServer/WebContent/WEB-INF/lib/Altibase.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../sso/KSignAccessServer/WebContent/WEB-INF/lib/collections.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../sso/KSignAccessServer/WebContent/WEB-INF/lib/commons-codec-1.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../sso/KSignAccessServer/WebContent/WEB-INF/lib/commons-collections-3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../sso/KSignAccessServer/WebContent/WEB-INF/lib/CryptoWrapper-0.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../sso/KSignAccessServer/WebContent/WEB-INF/lib/db2jcc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../sso/KSignAccessServer/WebContent/WEB-INF/lib/db2jcc_license_cu.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../sso/KSignAccessServer/WebContent/WEB-INF/lib/federation-ext-0.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../sso/KSignAccessServer/WebContent/WEB-INF/lib/googleSamlExt_0.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../sso/KSignAccessServer/WebContent/WEB-INF/lib/jdom.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../sso/KSignAccessServer/WebContent/WEB-INF/lib/jettison-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../sso/KSignAccessServer/WebContent/WEB-INF/lib/KCaseCrypto.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../sso/KSignAccessServer/WebContent/WEB-INF/lib/KSignLicenseVerify-2.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../sso/KSignAccessServer/WebContent/WEB-INF/lib/ldapjdk.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../sso/KSignAccessServer/WebContent/WEB-INF/lib/log4j-1.2.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../sso/KSignAccessServer/WebContent/WEB-INF/lib/mobile-ext-0.0.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../sso/KSignAccessServer/WebContent/WEB-INF/lib/mysql-connector-java-3.1.7-bin.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../sso/KSignAccessServer/WebContent/WEB-INF/lib/ojdbc14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../sso/KSignAccessServer/WebContent/WEB-INF/lib/servlet-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../sso/KSignAccessServer/WebContent/WEB-INF/lib/slf4j-api-1.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../sso/KSignAccessServer/WebContent/WEB-INF/lib/TrayExctension-0.0.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

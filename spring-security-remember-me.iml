@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+  <component name="EclipseModuleManager">
+    <varelement var="file://$M2_REPO$/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar" value="M2_REPO/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar" />
+    <varelement var="file://$M2_REPO$/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0-sources.jar" kind="src:" value="M2_REPO/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0-sources.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/spring-core/3.2.8.RELEASE/spring-core-3.2.8.RELEASE.jar" value="M2_REPO/org/springframework/spring-core/3.2.8.RELEASE/spring-core-3.2.8.RELEASE.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/spring-core/3.2.8.RELEASE/spring-core-3.2.8.RELEASE-sources.jar" kind="src:" value="M2_REPO/org/springframework/spring-core/3.2.8.RELEASE/spring-core-3.2.8.RELEASE-sources.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/spring-web/3.2.8.RELEASE/spring-web-3.2.8.RELEASE.jar" value="M2_REPO/org/springframework/spring-web/3.2.8.RELEASE/spring-web-3.2.8.RELEASE.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/spring-web/3.2.8.RELEASE/spring-web-3.2.8.RELEASE-sources.jar" kind="src:" value="M2_REPO/org/springframework/spring-web/3.2.8.RELEASE/spring-web-3.2.8.RELEASE-sources.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/spring-aop/3.2.8.RELEASE/spring-aop-3.2.8.RELEASE.jar" value="M2_REPO/org/springframework/spring-aop/3.2.8.RELEASE/spring-aop-3.2.8.RELEASE.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/spring-aop/3.2.8.RELEASE/spring-aop-3.2.8.RELEASE-sources.jar" kind="src:" value="M2_REPO/org/springframework/spring-aop/3.2.8.RELEASE/spring-aop-3.2.8.RELEASE-sources.jar" />
+    <varelement var="file://$M2_REPO$/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" value="M2_REPO/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" />
+    <varelement var="file://$M2_REPO$/aopalliance/aopalliance/1.0/aopalliance-1.0-sources.jar" kind="src:" value="M2_REPO/aopalliance/aopalliance/1.0/aopalliance-1.0-sources.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/spring-beans/3.2.8.RELEASE/spring-beans-3.2.8.RELEASE.jar" value="M2_REPO/org/springframework/spring-beans/3.2.8.RELEASE/spring-beans-3.2.8.RELEASE.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/spring-beans/3.2.8.RELEASE/spring-beans-3.2.8.RELEASE-sources.jar" kind="src:" value="M2_REPO/org/springframework/spring-beans/3.2.8.RELEASE/spring-beans-3.2.8.RELEASE-sources.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/spring-context/3.2.8.RELEASE/spring-context-3.2.8.RELEASE.jar" value="M2_REPO/org/springframework/spring-context/3.2.8.RELEASE/spring-context-3.2.8.RELEASE.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/spring-context/3.2.8.RELEASE/spring-context-3.2.8.RELEASE-sources.jar" kind="src:" value="M2_REPO/org/springframework/spring-context/3.2.8.RELEASE/spring-context-3.2.8.RELEASE-sources.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/spring-expression/3.2.8.RELEASE/spring-expression-3.2.8.RELEASE.jar" value="M2_REPO/org/springframework/spring-expression/3.2.8.RELEASE/spring-expression-3.2.8.RELEASE.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/spring-expression/3.2.8.RELEASE/spring-expression-3.2.8.RELEASE-sources.jar" kind="src:" value="M2_REPO/org/springframework/spring-expression/3.2.8.RELEASE/spring-expression-3.2.8.RELEASE-sources.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/spring-webmvc/3.2.8.RELEASE/spring-webmvc-3.2.8.RELEASE.jar" value="M2_REPO/org/springframework/spring-webmvc/3.2.8.RELEASE/spring-webmvc-3.2.8.RELEASE.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/spring-webmvc/3.2.8.RELEASE/spring-webmvc-3.2.8.RELEASE-sources.jar" kind="src:" value="M2_REPO/org/springframework/spring-webmvc/3.2.8.RELEASE/spring-webmvc-3.2.8.RELEASE-sources.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/spring-jdbc/3.2.8.RELEASE/spring-jdbc-3.2.8.RELEASE.jar" value="M2_REPO/org/springframework/spring-jdbc/3.2.8.RELEASE/spring-jdbc-3.2.8.RELEASE.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/spring-jdbc/3.2.8.RELEASE/spring-jdbc-3.2.8.RELEASE-sources.jar" kind="src:" value="M2_REPO/org/springframework/spring-jdbc/3.2.8.RELEASE/spring-jdbc-3.2.8.RELEASE-sources.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/spring-tx/3.2.8.RELEASE/spring-tx-3.2.8.RELEASE.jar" value="M2_REPO/org/springframework/spring-tx/3.2.8.RELEASE/spring-tx-3.2.8.RELEASE.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/spring-tx/3.2.8.RELEASE/spring-tx-3.2.8.RELEASE-sources.jar" kind="src:" value="M2_REPO/org/springframework/spring-tx/3.2.8.RELEASE/spring-tx-3.2.8.RELEASE-sources.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/security/spring-security-web/3.2.3.RELEASE/spring-security-web-3.2.3.RELEASE.jar" value="M2_REPO/org/springframework/security/spring-security-web/3.2.3.RELEASE/spring-security-web-3.2.3.RELEASE.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/security/spring-security-web/3.2.3.RELEASE/spring-security-web-3.2.3.RELEASE-sources.jar" kind="src:" value="M2_REPO/org/springframework/security/spring-security-web/3.2.3.RELEASE/spring-security-web-3.2.3.RELEASE-sources.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/security/spring-security-core/3.2.3.RELEASE/spring-security-core-3.2.3.RELEASE.jar" value="M2_REPO/org/springframework/security/spring-security-core/3.2.3.RELEASE/spring-security-core-3.2.3.RELEASE.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/security/spring-security-core/3.2.3.RELEASE/spring-security-core-3.2.3.RELEASE-sources.jar" kind="src:" value="M2_REPO/org/springframework/security/spring-security-core/3.2.3.RELEASE/spring-security-core-3.2.3.RELEASE-sources.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/security/spring-security-config/3.2.3.RELEASE/spring-security-config-3.2.3.RELEASE.jar" value="M2_REPO/org/springframework/security/spring-security-config/3.2.3.RELEASE/spring-security-config-3.2.3.RELEASE.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/security/spring-security-config/3.2.3.RELEASE/spring-security-config-3.2.3.RELEASE-sources.jar" kind="src:" value="M2_REPO/org/springframework/security/spring-security-config/3.2.3.RELEASE/spring-security-config-3.2.3.RELEASE-sources.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/security/spring-security-taglibs/3.2.3.RELEASE/spring-security-taglibs-3.2.3.RELEASE.jar" value="M2_REPO/org/springframework/security/spring-security-taglibs/3.2.3.RELEASE/spring-security-taglibs-3.2.3.RELEASE.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/security/spring-security-taglibs/3.2.3.RELEASE/spring-security-taglibs-3.2.3.RELEASE-sources.jar" kind="src:" value="M2_REPO/org/springframework/security/spring-security-taglibs/3.2.3.RELEASE/spring-security-taglibs-3.2.3.RELEASE-sources.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/security/spring-security-acl/3.2.3.RELEASE/spring-security-acl-3.2.3.RELEASE.jar" value="M2_REPO/org/springframework/security/spring-security-acl/3.2.3.RELEASE/spring-security-acl-3.2.3.RELEASE.jar" />
+    <varelement var="file://$M2_REPO$/org/springframework/security/spring-security-acl/3.2.3.RELEASE/spring-security-acl-3.2.3.RELEASE-sources.jar" kind="src:" value="M2_REPO/org/springframework/security/spring-security-acl/3.2.3.RELEASE/spring-security-acl-3.2.3.RELEASE-sources.jar" />
+    <varelement var="file://$M2_REPO$/jstl/jstl/1.2/jstl-1.2.jar" value="M2_REPO/jstl/jstl/1.2/jstl-1.2.jar" />
+    <varelement var="file://$M2_REPO$/mysql/mysql-connector-java/5.1.30/mysql-connector-java-5.1.30.jar" value="M2_REPO/mysql/mysql-connector-java/5.1.30/mysql-connector-java-5.1.30.jar" />
+    <varelement var="file://$M2_REPO$/org/slf4j/jcl-over-slf4j/1.7.5/jcl-over-slf4j-1.7.5.jar" value="M2_REPO/org/slf4j/jcl-over-slf4j/1.7.5/jcl-over-slf4j-1.7.5.jar" />
+    <varelement var="file://$M2_REPO$/org/slf4j/jcl-over-slf4j/1.7.5/jcl-over-slf4j-1.7.5-sources.jar" kind="src:" value="M2_REPO/org/slf4j/jcl-over-slf4j/1.7.5/jcl-over-slf4j-1.7.5-sources.jar" />
+    <varelement var="file://$M2_REPO$/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5.jar" value="M2_REPO/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5.jar" />
+    <varelement var="file://$M2_REPO$/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5-sources.jar" kind="src:" value="M2_REPO/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5-sources.jar" />
+    <varelement var="file://$M2_REPO$/ch/qos/logback/logback-classic/1.0.13/logback-classic-1.0.13.jar" value="M2_REPO/ch/qos/logback/logback-classic/1.0.13/logback-classic-1.0.13.jar" />
+    <varelement var="file://$M2_REPO$/ch/qos/logback/logback-classic/1.0.13/logback-classic-1.0.13-sources.jar" kind="src:" value="M2_REPO/ch/qos/logback/logback-classic/1.0.13/logback-classic-1.0.13-sources.jar" />
+    <varelement var="file://$M2_REPO$/ch/qos/logback/logback-core/1.0.13/logback-core-1.0.13.jar" value="M2_REPO/ch/qos/logback/logback-core/1.0.13/logback-core-1.0.13.jar" />
+    <varelement var="file://$M2_REPO$/ch/qos/logback/logback-core/1.0.13/logback-core-1.0.13-sources.jar" kind="src:" value="M2_REPO/ch/qos/logback/logback-core/1.0.13/logback-core-1.0.13-sources.jar" />
+    <src_description expected_position="0">
+      <src_folder value="file://$USER_HOME$/Downloads/spring-security-remember-me/src/main/java" expected_position="0" />
+      <src_folder value="file://$USER_HOME$/Downloads/spring-security-remember-me/src/main/resources" expected_position="1" />
+    </src_description>
+  </component>
+  <component name="FacetManager">
+    <facet type="web" name="Web">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$USER_HOME$/Downloads/spring-security-remember-me/src/main/webapp/WEB-INF/web.xml" />
+        </descriptors>
+        <webroots>
+          <root url="file://$USER_HOME$/Downloads/spring-security-remember-me/src/main/webapp" relative="/" />
+        </webroots>
+      </configuration>
+    </facet>
+    <facet type="Spring" name="Spring">
+      <configuration />
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6" inherit-compiler-output="false">
+    <output url="file://$USER_HOME$/Downloads/spring-security-remember-me/target/classes" />
+    <output-test url="file://$USER_HOME$/Downloads/spring-security-remember-me/target/test-classes" />
+    <content url="file://$USER_HOME$/Downloads/spring-security-remember-me">
+      <sourceFolder url="file://$USER_HOME$/Downloads/spring-security-remember-me/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/Downloads/spring-security-remember-me/src/main/resources" type="java-resource" />
+      <excludeFolder url="file://$USER_HOME$/Downloads/spring-security-remember-me/target" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="javax.servlet-api-3.1.0.jar">
+        <CLASSES>
+          <root url="file://$M2_REPO$/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$M2_REPO$/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0-sources.jar" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="jdk" jdkName="1.7" jdkType="JavaSDK" />
+    <orderEntry type="module-library">
+      <library name="spring-core-3.2.8.RELEASE.jar">
+        <CLASSES>
+          <root url="file://$M2_REPO$/org/springframework/spring-core/3.2.8.RELEASE/spring-core-3.2.8.RELEASE.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$M2_REPO$/org/springframework/spring-core/3.2.8.RELEASE/spring-core-3.2.8.RELEASE-sources.jar" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="spring-web-3.2.8.RELEASE.jar">
+        <CLASSES>
+          <root url="file://$M2_REPO$/org/springframework/spring-web/3.2.8.RELEASE/spring-web-3.2.8.RELEASE.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$M2_REPO$/org/springframework/spring-web/3.2.8.RELEASE/spring-web-3.2.8.RELEASE-sources.jar" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="spring-aop-3.2.8.RELEASE.jar">
+        <CLASSES>
+          <root url="file://$M2_REPO$/org/springframework/spring-aop/3.2.8.RELEASE/spring-aop-3.2.8.RELEASE.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$M2_REPO$/org/springframework/spring-aop/3.2.8.RELEASE/spring-aop-3.2.8.RELEASE-sources.jar" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="aopalliance-1.0.jar">
+        <CLASSES>
+          <root url="file://$M2_REPO$/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$M2_REPO$/aopalliance/aopalliance/1.0/aopalliance-1.0-sources.jar" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="spring-beans-3.2.8.RELEASE.jar">
+        <CLASSES>
+          <root url="file://$M2_REPO$/org/springframework/spring-beans/3.2.8.RELEASE/spring-beans-3.2.8.RELEASE.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$M2_REPO$/org/springframework/spring-beans/3.2.8.RELEASE/spring-beans-3.2.8.RELEASE-sources.jar" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="spring-context-3.2.8.RELEASE.jar">
+        <CLASSES>
+          <root url="file://$M2_REPO$/org/springframework/spring-context/3.2.8.RELEASE/spring-context-3.2.8.RELEASE.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$M2_REPO$/org/springframework/spring-context/3.2.8.RELEASE/spring-context-3.2.8.RELEASE-sources.jar" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="spring-expression-3.2.8.RELEASE.jar">
+        <CLASSES>
+          <root url="file://$M2_REPO$/org/springframework/spring-expression/3.2.8.RELEASE/spring-expression-3.2.8.RELEASE.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$M2_REPO$/org/springframework/spring-expression/3.2.8.RELEASE/spring-expression-3.2.8.RELEASE-sources.jar" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="spring-webmvc-3.2.8.RELEASE.jar">
+        <CLASSES>
+          <root url="file://$M2_REPO$/org/springframework/spring-webmvc/3.2.8.RELEASE/spring-webmvc-3.2.8.RELEASE.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$M2_REPO$/org/springframework/spring-webmvc/3.2.8.RELEASE/spring-webmvc-3.2.8.RELEASE-sources.jar" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="spring-jdbc-3.2.8.RELEASE.jar">
+        <CLASSES>
+          <root url="file://$M2_REPO$/org/springframework/spring-jdbc/3.2.8.RELEASE/spring-jdbc-3.2.8.RELEASE.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$M2_REPO$/org/springframework/spring-jdbc/3.2.8.RELEASE/spring-jdbc-3.2.8.RELEASE-sources.jar" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="spring-tx-3.2.8.RELEASE.jar">
+        <CLASSES>
+          <root url="file://$M2_REPO$/org/springframework/spring-tx/3.2.8.RELEASE/spring-tx-3.2.8.RELEASE.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$M2_REPO$/org/springframework/spring-tx/3.2.8.RELEASE/spring-tx-3.2.8.RELEASE-sources.jar" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="spring-security-web-3.2.3.RELEASE.jar">
+        <CLASSES>
+          <root url="file://$M2_REPO$/org/springframework/security/spring-security-web/3.2.3.RELEASE/spring-security-web-3.2.3.RELEASE.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$M2_REPO$/org/springframework/security/spring-security-web/3.2.3.RELEASE/spring-security-web-3.2.3.RELEASE-sources.jar" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="spring-security-core-3.2.3.RELEASE.jar">
+        <CLASSES>
+          <root url="file://$M2_REPO$/org/springframework/security/spring-security-core/3.2.3.RELEASE/spring-security-core-3.2.3.RELEASE.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$M2_REPO$/org/springframework/security/spring-security-core/3.2.3.RELEASE/spring-security-core-3.2.3.RELEASE-sources.jar" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="spring-security-config-3.2.3.RELEASE.jar">
+        <CLASSES>
+          <root url="file://$M2_REPO$/org/springframework/security/spring-security-config/3.2.3.RELEASE/spring-security-config-3.2.3.RELEASE.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$M2_REPO$/org/springframework/security/spring-security-config/3.2.3.RELEASE/spring-security-config-3.2.3.RELEASE-sources.jar" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="spring-security-taglibs-3.2.3.RELEASE.jar">
+        <CLASSES>
+          <root url="file://$M2_REPO$/org/springframework/security/spring-security-taglibs/3.2.3.RELEASE/spring-security-taglibs-3.2.3.RELEASE.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$M2_REPO$/org/springframework/security/spring-security-taglibs/3.2.3.RELEASE/spring-security-taglibs-3.2.3.RELEASE-sources.jar" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="spring-security-acl-3.2.3.RELEASE.jar">
+        <CLASSES>
+          <root url="file://$M2_REPO$/org/springframework/security/spring-security-acl/3.2.3.RELEASE/spring-security-acl-3.2.3.RELEASE.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$M2_REPO$/org/springframework/security/spring-security-acl/3.2.3.RELEASE/spring-security-acl-3.2.3.RELEASE-sources.jar" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="jstl-1.2.jar">
+        <CLASSES>
+          <root url="file://$M2_REPO$/jstl/jstl/1.2/jstl-1.2.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="mysql-connector-java-5.1.30.jar">
+        <CLASSES>
+          <root url="file://$M2_REPO$/mysql/mysql-connector-java/5.1.30/mysql-connector-java-5.1.30.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="jcl-over-slf4j-1.7.5.jar">
+        <CLASSES>
+          <root url="file://$M2_REPO$/org/slf4j/jcl-over-slf4j/1.7.5/jcl-over-slf4j-1.7.5.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$M2_REPO$/org/slf4j/jcl-over-slf4j/1.7.5/jcl-over-slf4j-1.7.5-sources.jar" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="slf4j-api-1.7.5.jar">
+        <CLASSES>
+          <root url="file://$M2_REPO$/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$M2_REPO$/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5-sources.jar" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="logback-classic-1.0.13.jar">
+        <CLASSES>
+          <root url="file://$M2_REPO$/ch/qos/logback/logback-classic/1.0.13/logback-classic-1.0.13.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$M2_REPO$/ch/qos/logback/logback-classic/1.0.13/logback-classic-1.0.13-sources.jar" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="logback-core-1.0.13.jar">
+        <CLASSES>
+          <root url="file://$M2_REPO$/ch/qos/logback/logback-core/1.0.13/logback-core-1.0.13.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$M2_REPO$/ch/qos/logback/logback-core/1.0.13/logback-core-1.0.13-sources.jar" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="Maven: javax.servlet:javax.servlet-api:3.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-core:3.2.8.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-web:3.2.8.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-aop:3.2.8.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-beans:3.2.8.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-context:3.2.8.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:3.2.8.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-expression:3.2.8.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:3.2.8.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-tx:3.2.8.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:3.2.3.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: aopalliance:aopalliance:1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:3.2.3.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-config:3.2.3.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-taglibs:3.2.3.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-acl:3.2.3.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: jstl:jstl:1.2" level="project" />
+    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.30" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:jcl-over-slf4j:1.7.5" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.5" level="project" />
+    <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.0.13" level="project" />
+    <orderEntry type="library" name="Maven: ch.qos.logback:logback-core:1.0.13" level="project" />
+  </component>
+</module>

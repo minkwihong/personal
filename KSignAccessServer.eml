@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component LANGUAGE_LEVEL="JDK_1_6" jdk="1.6" jdk_type="JavaSDK">
+	<output-test url="file://$MODULE_DIR$/../sso/KSignAccessServer/build/classes"/>
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$/../sso/KSignAccessServer"/>
+	<lib name="TrayExctension-0.0.1.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/../sso/KSignAccessServer/WebContent/WEB-INF/lib/TrayExctension-0.0.1.jar!/"/>
+	</lib>
+	<levels>
+		<level name="log4j-1.2.8" value="project"/>
+		<level name="AccessLib1030_SSO_2" value="project"/>
+	</levels>
+</component>

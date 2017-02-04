@@ -1,0 +1,39 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="spring-security-remember-me:war exploded">
+    <output-path>$USER_HOME$/Downloads/spring-security-remember-me/target/SpringSecurity</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="spring-security-remember-me" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:3.2.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:3.2.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:3.2.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:3.2.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:3.2.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:3.2.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:3.2.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:3.2.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-tx:3.2.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:3.2.3.RELEASE" />
+          <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:3.2.3.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:3.2.3.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-taglibs:3.2.3.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-acl:3.2.3.RELEASE" />
+          <element id="library" level="project" name="Maven: jstl:jstl:1.2" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.30" />
+          <element id="library" level="project" name="Maven: org.slf4j:jcl-over-slf4j:1.7.5" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.5" />
+          <element id="library" level="project" name="Maven: ch.qos.logback:logback-classic:1.0.13" />
+          <element id="library" level="project" name="Maven: ch.qos.logback:logback-core:1.0.13" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$USER_HOME$/Downloads/spring-security-remember-me/target/SpringSecurity/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="spring-security-remember-me/web/Web" />
+    </root>
+  </artifact>
+</component>
