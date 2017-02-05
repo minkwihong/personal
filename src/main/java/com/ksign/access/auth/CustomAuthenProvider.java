@@ -3,6 +3,7 @@ package com.ksign.access.auth;
 import java.io.Serializable;
 import java.util.Collection;
 
+import com.ksign.access.mapper.impl.AuthenRepository;
 import com.ksign.access.tool.MessageType;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class CustomAuthenProvider implements AuthenticationProvider, Serializabl
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    @Autowired
+    AuthenRepository authenRepo;
+
     Logger logger = Logger.getLogger(this.getClass());
     
 	@Override
@@ -42,6 +46,7 @@ public class CustomAuthenProvider implements AuthenticationProvider, Serializabl
 			token = (LoginToken) authenService.loadUserByUsername(username);
 			if (!passwordEncoder.matches(password, token.getPassword())) throw new BadCredentialsException(MessageType.DIFFERENTPASSWORD.getMessage());
             authorities = token.getAuthorities();
+            authenRepo.updateAccessLogByUserName(username);
         } catch(UsernameNotFoundException e) {
             logger.error(e.toString());
             throw new UsernameNotFoundException(e.getMessage());
