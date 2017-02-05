@@ -46,7 +46,7 @@ public class CustomAuthenProvider implements AuthenticationProvider, Serializabl
 			token = (LoginToken) authenService.loadUserByUsername(username);
 			if (!passwordEncoder.matches(password, token.getPassword())) throw new BadCredentialsException(MessageType.DIFFERENTPASSWORD.getMessage());
             authorities = token.getAuthorities();
-            // 최근접속로그
+            // 최근접속로그1
             authenRepo.updateAccessLogByUserName(username);
         } catch(UsernameNotFoundException e) {
             logger.error(e.toString());
