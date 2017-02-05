@@ -7,5 +7,7 @@ import java.util.HashMap;
  */
 public interface KAAuthMapper {
     public HashMap<String, Object> selectKAAdminById(HashMap<String, Object> paramMap);
+
+    void updateAccessLogByUserName(String username);
 }
 
