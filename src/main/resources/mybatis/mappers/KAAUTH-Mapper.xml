@@ -23,4 +23,11 @@
 		FROM KAAdmin a
 		WHERE a.userId = #{userId}
 	</select>
+
+
+	<update id="updateAccessLogByUserName" parameterType="string">
+		UPDATE KAAdmin A SET A.LASTLOGINTIME = sysdate
+		WHERE USERID = #{value}
+
+	</update>
 </mapper>
