@@ -36,17 +36,14 @@
 	<select id="selectKAAuditListCount" parameterType="java.util.HashMap" resultType="int">
 		SELECT COUNT(*) FROM kaaudit ka
 		<trim prefix="WHERE" prefixOverrides="AND |OR ">
-			<if test="auditOid != null and auditOid !=''">
-				ka.auditoid = #{auditOid}
+			<if test="userId != null and userId !=''">
+				ka.userId = #{userId}
 			</if>
 
 			<if test="eventCode != null and eventCode !=''">
 				ka.EVENT_CODE = #{eventCode}
 			</if>
 
-			<if test="s_value != null and s_value !=''">
-				ka.userId like '%${s_value}%'
-			</if>
 		</trim>
 		order by ${orderBy}
 	</select>
@@ -61,17 +58,15 @@
 		<include refid="kaauditCol" />
 		FROM kaaudit ka
 		<trim prefix="WHERE" prefixOverrides="AND |OR ">
-			<if test="auditOid != null and auditOid !=''">
-				ka.auditoid = #{auditOid}
+			<if test="userId != null and userId !=''">
+				ka.userId = #{userId}
 			</if>
 
 			<if test="eventCode != null and eventCode !=''">
 				ka.EVENT_CODE = #{eventCode}
 			</if>
 
-			<if test="s_value != null and s_value !=''">
-				ka.userId like '%${s_value}%'
-			</if>
+
 		</trim>
 		order by ${orderBy}
 		) A

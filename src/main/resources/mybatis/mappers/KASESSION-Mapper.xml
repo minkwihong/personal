@@ -44,8 +44,8 @@
 		<include refid="sessionColAS" />
 		FROM V_SESSION S
 		<trim prefix="WHERE" prefixOverrides="AND |OR ">
-			<if test="loginId != null and loginId !=''">
-				S.LOGIN_ID = #{loginId}
+			<if test="login_Id != null and login_Id !=''">
+				S.LOGIN_ID = #{login_Id}
 			</if>
 		</trim>
 		order by S.${orderBy}
