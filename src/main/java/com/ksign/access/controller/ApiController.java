@@ -37,6 +37,7 @@ public class ApiController {
 		Object jsonResult = null;
 		BaseService<?> service = null;
 
+		log.debug("user : " + req.getParameter("userId"));
 		if(log.isDebugEnabled()) log.debug(lhead + "serviceId: " + serviceId + ", method: " + method);
 		try{
 			service = new ServiceTypeFactory().getService(serviceId, req, resp,postBody);
