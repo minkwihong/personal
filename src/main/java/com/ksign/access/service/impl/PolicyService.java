@@ -231,10 +231,10 @@ public class PolicyService<T> extends BaseService<T> {
 			}
 		}
 
-		result.put("total", Integer.parseInt((String)defaultParamMap.get("page")));
+		result.put("total", defaultParamMap.get("pageNo"));
 		result.put("rows", policyRepo.selectKAUserGrpMappingListCount(defaultParamMap));
 		result.put("list", userMappVoList );
-		result.put("page", Integer.parseInt((String)defaultParamMap.get("page")));
+		result.put("page", defaultParamMap.get("pageNo"));
 
 		return gson.toJson(result);
 	}
@@ -260,10 +260,10 @@ public class PolicyService<T> extends BaseService<T> {
 			}
 		}
 
-		result.put("total", Integer.parseInt((String)defaultParamMap.get("page")));
+		result.put("total", defaultParamMap.get("pageNo"));
 		result.put("rows", policyRepo.selectKAUserListCount(defaultParamMap));
 		result.put("list", userVoList );
-		result.put("page", Integer.parseInt((String)defaultParamMap.get("page")));
+		result.put("page", defaultParamMap.get("pageNo"));
 
 		return gson.toJson(result);
 	}
@@ -289,10 +289,10 @@ public class PolicyService<T> extends BaseService<T> {
 			}
 		}
 
-		result.put("total", Integer.parseInt((String)defaultParamMap.get("page")));
+		result.put("total", defaultParamMap.get("pageNo"));
 		result.put("rows", policyRepo.selectKAPolicyListCount(defaultParamMap));
 		result.put("list", policyVoList );
-		result.put("page", Integer.parseInt((String)defaultParamMap.get("page")));
+		result.put("page", defaultParamMap.get("pageNo"));
 
 		return gson.toJson(result);
 	}
@@ -325,10 +325,10 @@ public class PolicyService<T> extends BaseService<T> {
 			}
 		}
 
-		result.put("total", Integer.parseInt((String)defaultParamMap.get("page")));
+		result.put("total", defaultParamMap.get("pageNo"));
 		result.put("rows", policyRepo.selectKAPolicyMappingListCount(defaultParamMap));
 		result.put("list", policyMappVoList );
-		result.put("page", Integer.parseInt((String)defaultParamMap.get("page")));
+		result.put("page", defaultParamMap.get("pageNo"));
 
 		return gson.toJson(result);
 	}
@@ -355,10 +355,10 @@ public class PolicyService<T> extends BaseService<T> {
 			}
 		}
 
-		result.put("total", Integer.parseInt((String)defaultParamMap.get("page")));
+		result.put("total", defaultParamMap.get("pageNo"));
 		result.put("rows", adminRepo.selectKAPolicyGrpListCount(defaultParamMap));
 		result.put("list", policyGrpVoList );
-		result.put("page", Integer.parseInt((String)defaultParamMap.get("page")));
+		result.put("page", defaultParamMap.get("pageNo"));
 
 		return gson.toJson(result);
 	}

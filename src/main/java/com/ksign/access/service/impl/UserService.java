@@ -70,6 +70,13 @@ public class UserService<T> extends BaseService<T> {
 
 		result.put("count", userRepo.selectKAUserListCount(defaultParamMap));
 		result.put("list", userRepo.selectKAUserList(defaultParamMap));
+		result.put("total", defaultParamMap.get("pageNo"));
+		result.put("page", defaultParamMap.get("pageNo"));
+
+
+
+		//result.put("list", userVoList );
+
 
 		return gson.toJson(result);
 	}
