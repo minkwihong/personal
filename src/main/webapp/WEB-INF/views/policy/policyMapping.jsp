@@ -104,7 +104,10 @@
                 total:'total',
                 root:'list' //
 			},
-            colNames: ['name', 'grpDesc'],
+            prmNames: {
+                page: "pageNo", rows: "pageSize"
+            },
+			colNames: ['name', 'grpDesc'],
 			colModel: [
                 { label: 'name ', name: 'name',  width: 100 , key:true ,
                     searchoptions : { sopt:['cn']}
@@ -137,6 +140,9 @@
                 total:'total',
                 root:'list' // map에 "list",list 넣으면 그 키값 써줘야 데이터 뿌려짐
 			},
+            prmNames: {
+                page: "pageNo", rows: "pageSize"
+            },
             colNames: ['name', 'polDesc'],
             colModel: [
                 { label: 'name ', name: 'name',  width: 100 , key:true
@@ -153,7 +159,7 @@
             .jqGrid('setSelection', '3');
 
         jQuery("#jqGrid5").jqGrid({
-            url : "/api/policy/userList",
+            url : "/api/user/userList",
             datatype: "json",
             mtype : "GET",
             width: 300,
@@ -162,7 +168,11 @@
             jsonReader:{
                 page :'page', // 페이징을 위한
                 total:'total',
-                root:'list' // map에 "list",list 넣으면 그 키값 써줘야 데이터 뿌려짐
+                root:'list', // map에 "list",list 넣으면 그 키값 써줘야 데이터 뿌려짐
+				rows: 'count'
+            },
+            prmNames: {
+                page: "pageNo", rows: "pageSize"
             },
             colNames: ['userId','name'],
             colModel: [
@@ -232,6 +242,9 @@
                 page :'page', // 페이징을 위한
                 total:'total',
                 root:'list'
+            },
+            prmNames: {
+                page: "pageNo", rows: "pageSize"
             },
             colNames: ['grpName', 'policyName'],
             colModel: [
@@ -304,6 +317,9 @@
                 page :'page', // 페이징을 위한
                 total:'total',
                 root:'list'
+            },
+            prmNames: {
+                page: "pageNo", rows: "pageSize"
             },
             colNames: ['name', 'userId'],
             colModel: [
