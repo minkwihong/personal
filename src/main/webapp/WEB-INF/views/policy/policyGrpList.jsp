@@ -34,7 +34,7 @@
 								<h3 class="box-title">KSignAccess PolicyGrp List</h3>
 							</div>
 							<div class="box-body">
-							<form class="form-search" id="f">
+				<%--			<form class="form-search" id="f">--%>
 									<input type="hidden" id="curPage" value="1">
 									<input type="hidden" id="sortType" value="name" data-sorttype="desc">
 
@@ -48,7 +48,7 @@
 											</div>
 										</div>
 									</div>
-								</form>
+								<%--</form>--%>
 								<br>
 								<div class="table-header">
 									<span id="count">0</span> results (<span id="curPageNo">1</span>/<span id="maxPageNo">1</span> page)
@@ -128,6 +128,12 @@
 
             $("#s_btn").click(function(){
                 policyService.search(obj);
+            });
+
+            $("#s_value").keyup(function(event){
+                if(event.keyCode == 13){
+                    $("#s_btn").click();
+                }
             });
 		});
 
