@@ -51,7 +51,14 @@
 						U.NAME LIKE '%${name}%'
 					</if>
 				</trim>
-		order by U.${orderBy}
+
+				<if test="sidx != null and sidx !=''">
+					order by U.${sidx} ${sord}
+				</if>
+				<if test="orderBy != null and orderBy != ''">
+					order by U.${orderBy}
+				</if>
+
 	</select>
 	
 	<select id="selectKAUserList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
@@ -60,7 +67,7 @@
 				ROWNUM AS RNUM,
 				FLOOR((ROWNUM-1)/${pageSize}+1) AS PAGE,
 				COUNT(*) OVER() AS TOTCNT FROM (
-					SELECT 
+					SELECT
 						<include refid="userColAS" />,
 						<include refid="userCertColAS" />
 					FROM KAUSER U
@@ -75,7 +82,14 @@
 									U.NAME LIKE '%${name}%'
 								</if>
 							</trim>
-					order by U.${orderBy}
+
+						<if test="sidx != null and sidx !=''">
+							order by U.${sidx} ${sord}
+						</if>
+						<if test="orderBy != null and orderBy != ''">
+							order by U.${orderBy}
+						</if>
+
 				) A
 			) WHERE 1 = 1
 			<if test="pageNo != null and pageNo !=''">
