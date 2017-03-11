@@ -1,22 +1,21 @@
 package com.ksign.access.tool;
 
+import ksign.jce.util.JCEUtil;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.TypeReference;
+import org.springframework.security.crypto.codec.Base64;
+
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.security.MessageDigest;
-import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.type.TypeReference;
-
-import com.google.gson.JsonParseException;
-import org.springframework.security.crypto.codec.Base64;
-
 public class CommonUtil {
+
+    public static SSOAgentCryptUtil webCipherUtil = null;
 
 	public static HashMap parseRequestMap(HttpServletRequest request) throws UnsupportedEncodingException {
         String tempStr;
@@ -36,20 +35,53 @@ public class CommonUtil {
         }
         return hm;
     }
-	
-	
-    public static HashMap<String, Object> convertJsonToObject(String json) throws  IOException {
-    	
-        ObjectMapper objectMapper = new ObjectMapper();
-        TypeReference<HashMap<String, Object>> typeReference = new TypeReference<HashMap<String, Object>>() { };
-        HashMap<String, Object> object = objectMapper.readValue(json, typeReference);
 
-        if((String)object.get("password") != null) {
-            object.put("password", passwordEncoder((String) object.get("password")));
+
+    public static HashMap<String, Object> convertJsonToObject(String json) throws  IOException {
+        HashMap<String, Object> object = null;
+
+    	if(json != null) {
+            ObjectMapper objectMapper = new ObjectMapper();
+            TypeReference<HashMap<String, Object>> typeReference = new TypeReference<HashMap<String, Object>>() {
+            };
+            object = objectMapper.readValue(json, typeReference);
+
+            if ((String) object.get("password") != null) {
+                object.put("password", passwordEncoder((String) object.get("password")));
+            }
+        }else{
+            object = new HashMap<String,Object>();
         }
 
         return object;
     }
+
+    public static HashMap<String,Object> setWebCipher()  {
+        try {
+            JCEUtil.initProvider();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        HashMap<String,Object> keyIv = new HashMap<String,Object>();
+        byte[] key = SSOCipherUtil.doB64Decode("L+Q+5sefZ5/k+iffNN5ZcdKsBvKbwlQTgLdNv5ElwEg=");
+
+        byte[] m_key = new byte[16];
+        byte[] m_iv = new byte[16];
+
+        System.arraycopy(key, 0, m_key, 0, 16);
+        System.arraycopy(key, 16, m_iv, 0, m_iv.length);
+
+        webCipherUtil = new SSOAgentCryptUtil("SEED", m_key, m_iv);
+        webCipherUtil.setGid("Fix_AX_Crypt");
+        webCipherUtil.setKeyInfo("L+Q+5sefZ5/k+iffNN5ZcdKsBvKbwlQTgLdNv5ElwEg=");
+
+        keyIv.put("key",m_key);
+        keyIv.put("iv",m_iv);
+
+        return keyIv;
+    }
+
+
 
     public static String passwordEncoder(String plainPassword){
         byte[] result = null;
@@ -72,11 +104,13 @@ public class CommonUtil {
     }
 
 
-	
+    public static String getHostFromUri(String uri){
 
-	
-	
-	
+        String scheme = uri.substring(0, uri.indexOf("//"));
+        String next = uri.substring(uri.indexOf("//") + 2);
+        String host = next.substring(0, next.indexOf("/"));
 
-	
+        return host;
+    }
+
 }
