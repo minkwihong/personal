@@ -1,7 +1,6 @@
 package com.ksign.access.mapper.impl;
 
 import com.ksign.access.mapper.BaseRepository;
-import com.ksign.access.mapper.KAASessionMapper;
 import com.ksign.access.mapper.KAPolicyMapper;
 import org.springframework.stereotype.Repository;
 
