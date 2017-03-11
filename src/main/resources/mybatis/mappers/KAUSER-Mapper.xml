@@ -3,31 +3,21 @@
 <mapper namespace="com.ksign.access.mapper.KAUserMapper">
 
 	<sql id="userColAS">
+		U.BANKCD AS "bankCd",
 		U.USERID AS "userId",
-		U.NAME AS "name",
-		U.PASSWORD AS "password",
-		U.OUDN AS "u_oudn",
-		U.TITLE AS "title",
-		U.EMAIL AS "email",
-		U.MOBILE AS "mobile",
-		U.DESCRIPTION AS "description",
-		U.DEACTIVATED AS "deactivated",
-		U.LASTLOGINTIME AS "lastLoginTime"
+		U.GID AS "gid",
+		U.LOGINSTATE AS "loginState",
+		U.FINALLOGINDATE AS "finalLoginDate"
 	</sql>
 
 	<sql id="userCol">
+		U.BANKCD ,
 		U.USERID ,
-		U.NAME ,
-		U.PASSWORD ,
-		U.OUDN ,
-		U.TITLE ,
-		U.EMAIL,
-		U.MOBILE ,
-		U.DESCRIPTION ,
-		U.DEACTIVATED ,
-		U.LASTLOGINTIME
+		U.GID ,
+		U.LOGINSTATE ,
+		U.FINALLOGINDATE
 	</sql>
-	
+
 	<sql id="userCertColAS">
 		C.CERTDN AS "certDn"
 	</sql>
@@ -38,98 +28,95 @@
 
 
 
- 	<select id="selectKAUserListCount" parameterType="java.util.HashMap" resultType="int">
-		SELECT COUNT(*) FROM KAUSER U
-			JOIN KAOU OU ON U.OUDN = OU.OUDN
-  			LEFT JOIN KAUSERCERT C ON U.USERID = C.USERID
-				<trim prefix="WHERE" prefixOverrides="AND |OR ">
-					<if test="userId != null and userId !=''">
-						U.USERID = #{userId}
-					</if>
-		
-					<if test="name != null and name !=''">
-						U.NAME LIKE '%${name}%'
-					</if>
-				</trim>
+	<select id="selectKAUserListCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT COUNT(*) FROM KAUSER_INFO U
 
-				<if test="sidx != null and sidx !=''">
-					order by U.${sidx} ${sord}
-				</if>
-				<if test="orderBy != null and orderBy != ''">
-					order by U.${orderBy}
-				</if>
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="userId != null and userId !=''">
+				U.USERID = #{userId}
+			</if>
+
+			<if test="bankCd != null and bankCd !=''">
+				U.BANKCD LIKE '%${bankCd}%'
+			</if>
+		</trim>
+
+		<if test="sidx != null and sidx !=''">
+			order by U.${sidx} ${sord}
+		</if>
+		<if test="orderBy != null and orderBy != ''">
+			order by U.${orderBy}
+		</if>
 
 	</select>
-	
+
 	<select id="selectKAUserList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		SELECT * FROM (
-			SELECT A.*,
-				ROWNUM AS RNUM,
-				FLOOR((ROWNUM-1)/${pageSize}+1) AS PAGE,
-				COUNT(*) OVER() AS TOTCNT FROM (
-					SELECT
-						<include refid="userColAS" />,
-						<include refid="userCertColAS" />
-					FROM KAUSER U
-						JOIN KAOU OU ON U.OUDN = OU.OUDN
-  						LEFT JOIN KAUSERCERT C ON U.USERID = C.USERID
-							<trim prefix="WHERE" prefixOverrides="AND |OR ">
-								<if test="userId != null and userId !=''">
-									U.USERID = #{userId}
-								</if>
-					
-								<if test="name != null and name !=''">
-									U.NAME LIKE '%${name}%'
-								</if>
-							</trim>
+		SELECT A.*,
+		ROWNUM AS RNUM,
+		FLOOR((ROWNUM-1)/${pageSize}+1) AS PAGE,
+		COUNT(*) OVER() AS TOTCNT FROM (
+		SELECT
+		<include refid="userColAS" />
 
-						<if test="sidx != null and sidx !=''">
-							order by U.${sidx} ${sord}
-						</if>
-						<if test="orderBy != null and orderBy != ''">
-							order by U.${orderBy}
-						</if>
+		FROM KAUSER_INFO U
 
-				) A
-			) WHERE 1 = 1
-			<if test="pageNo != null and pageNo !=''">
-				AND PAGE = ${pageNo}
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="userId != null and userId !=''">
+				U.USERID = #{userId}
 			</if>
+
+			<if test="bankCd != null and bankCd !=''">
+				U.BANKCD LIKE '%${bankCd}%'
+			</if>
+		</trim>
+
+		<if test="sidx != null and sidx !=''">
+			order by U.${sidx} ${sord}
+		</if>
+		<if test="orderBy != null and orderBy != ''">
+			order by U.${orderBy}
+		</if>
+
+		) A
+		) WHERE 1 = 1
+		<if test="pageNo != null and pageNo !=''">
+			AND PAGE = ${pageNo}
+		</if>
 	</select>
-	
+
 	<select id="selectKAUser" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-			SELECT 
-				<include refid="userColAS" />,
-				<include refid="userCertColAS" />
-			FROM KAUSER U
-				JOIN KAOU OU ON U.OUDN = OU.OUDN
-				LEFT JOIN KAUSERCERT C ON U.USERID = C.USERID
-			WHERE
-				U.USERID = #{userId}
+		SELECT
+		<include refid="userColAS" />
+
+		FROM KAUSER_INFO U
+
+		WHERE
+		U.USERID = #{userId}
 	</select>
-	
+
 	<update id="updateKAUser" parameterType="java.util.HashMap">
-			UPDATE KAUSER U SET  U.USERID = #{userId}, U.NAME = #{name}, U.OUDN = #{oudn}, U.TITLE = #{title} 
-			WHERE
-				U.USERID = #{userId}
+		UPDATE KAUSER U SET  U.USERID = #{userId}, U.NAME = #{name}, U.OUDN = #{oudn}, U.TITLE = #{title}
+		WHERE
+		U.USERID = #{userId}
 	</update>
-	
+
 	<update id="registKAUser" parameterType="java.util.HashMap">
-			INSERT INTO KAUSER U(
-				<include refid="userCol" />
-			)
-			VALUES(
-				#{userId},
-				#{name},
-				#{password},
-				#{oudn},
-				#{title},
-				#{email},
-				#{mobile},
-				#{description},
-				#{deactivated},
-				sysdate
-			)
+		INSERT INTO KAUSER U(
+		<include refid="userCol" />
+		)
+		VALUES(
+		#{userId},
+		#{name},
+		#{password},
+		#{oudn},
+		#{title},
+		#{email},
+		#{mobile},
+		#{description},
+		#{deactivated},
+		sysdate
+		)
 	</update>
 
 	<select id="selectKAUserDupCheck" parameterType="java.util.HashMap" resultType="int">

@@ -22,4 +22,19 @@
     
     <entry key="remove.abandoned.timeout">60</entry>
     <entry key="initial.size">5</entry>
+
+    <!-- tray 통신 -->
+    <entry key="http.port">19091</entry>
+    <entry key="http.target">/cs-duplicate.jsp</entry>
+    <entry key="http.connTimeout">8000</entry>
+    <entry key="http.readTimeout">8000</entry>
+
+    <!-- conf -->
+    <entry key="conf.liveCheckInterval">60</entry>
+    <entry key="conf.emergencyInterval">10</entry>
+    <entry key="conf.duplicateCheckInterval">600</entry>
+
+
+    <!-- conf -->
+
 </properties>

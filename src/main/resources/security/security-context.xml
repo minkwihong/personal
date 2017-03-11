@@ -12,12 +12,13 @@
 	<security:http pattern="/*.html" security="none" />
 	<security:http pattern="/js/**" security="none" />
 	<security:http pattern="/img/*" security="none" />
+	<security:http pattern="/ssoRest/**" security="none" />
 
 
 	<security:http auto-config="true" disable-url-rewriting="true" use-expressions="true"  access-denied-page="/denied.jsp">
 		<security:intercept-url pattern="/favicon.ico" access="ROLE_ANONYMOUS" />
 		<security:intercept-url pattern="/main/login.*" access="permitAll" />
-		<security:intercept-url pattern="/login.ajax" access="permitAll" />				
+		<security:intercept-url pattern="/login.ajax" access="permitAll" />
 		<security:intercept-url pattern="/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
 		<security:form-login login-page="/main/login.do"
 			username-parameter="adminId"

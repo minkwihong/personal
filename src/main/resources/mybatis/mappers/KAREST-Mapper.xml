@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ksign.access.mapper.KARestMapper">
+
+
+	<select id="selectAccountVerify" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT * FROM KAUSER_INFO A
+		WHERE
+		A.USERID = #{userId}
+		AND A.BANKCD = #{bankCd}
+	</select>
+
+	<update id="insertCurrLoginAuditVerify">
+		INSERT INTO KALOGIN_INFO(USERID,GID,LOGINIP,LOGINSTATE,LOGINDATE,BANKCD,MACADDR)
+		VALUES (#{userId},#{gid},#{loginIp},#{loginState},SYSDATE,#{bankCd},#{macAddr})
+	</update>
+
+	<update id="insertLoginAudit">
+		INSERT INTO KAAUDIT(AUDITOID,EVENT_DATE,AUDIT_TYPE,EVENT_CODE,USERID,USERNAME,CLIENTIP,SERVERNAME,RESULTCODE,BANK_CD,MACADDR)
+		VALUES (#{auditOid},SYSDATE,#{auditType},#{eventCode},#{userId},#{userId},#{loginIp},#{gid},#{resultCode},#{bankCd},#{macAddr})
+	</update>
+
+	<select id="currLoginAuditRow" resultType="int">
+		SELECT count(1)
+		FROM KAAUDIT
+	</select>
+
+	<select id="selectDuplLoginUser" resultType="java.util.Map">
+		SELECT *
+		FROM KALOGIN_INFO
+		WHERE USERID = #{userId}
+		AND BANKCD = #{bankCd}
+	</select>
+
+	<delete id="deleteCurrLoginUser">
+		DELETE FROM KALOGIN_INFO
+		WHERE BANKCD = #{bankCd}
+		AND USERID = #{userId}
+		AND LOGINIP = #{loginIp}
+	</delete>
+
+	<select id="selectAccountFailCnt"  resultType="int">
+		SELECT LOGINFAILCNT
+		FROM KAUSER_INFO A
+		WHERE USERID = #{userId}
+		AND BANKCD = #{bankCd}
+	</select>
+
+	<update id="insertAccoutFailCnt">
+		UPDATE KAUSER_INFO SET LOGINFAILCNT = #{failCnt}
+		WHERE USERID = #{userId}
+		AND BANKCD = #{bankCd}
+	</update>
+
+	<update id="updateAccountActivation">
+		UPDATE KAUSER_INFO SET ACTIVATION = #{activation}
+		WHERE USERID = #{userId}
+		AND BANKCD = #{bankCd}
+	</update>
+
+	<select id="selectNonceValidation" resultType="string">
+		SELECT LOGINSTATE
+		FROM KALOGIN_INFO
+		WHERE BANKCD = #{bankCd}
+		AND USERID = #{userId}
+		AND LOGINIP = #{loginIp}
+	</select>
+
+	<select id="selectKAUserInfoCnt" resultType="int">
+		SELECT COUNT(1)
+		FROM KAUSER_INFO
+		WHERE BANKCD = #{bankCd}
+		AND USERID = #{userId}
+	</select>
+
+	<update id="insertKAUserInfo">
+		INSERT INTO KAUSER_INFO (BANKCD,USERID,GID,LOGINSTATE,ACTIVATION,LOGINFAILCNT)
+		VALUES (#{bankCd},#{userId},#{gid},'T','Y',0)
+	</update>
+
+	<select id="selectKAAuthUriList" resultType="int">
+		SELECT COUNT(1)
+		FROM KA_ACCESS_URI
+		WHERE URI = #{requestUri}
+	</select>
+
+
+</mapper>

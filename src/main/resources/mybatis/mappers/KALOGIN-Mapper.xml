@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.ksign.access.mapper.KAALoginMapper">
+	<sql id="loginInfoColAS">
+		S.USERID AS "userId",
+		S.GID AS "gid",
+		S.BANKCD AS "bankCd",
+		S.MACADDR AS "macAddr",
+		S.LOGINSTATE AS "loginState",
+		S.LOGINDATE AS "loginDate"
+	</sql>
+
+	<sql id="loginInfoCol">
+		S.USERID ,
+		S.GID ,
+		S.BANKCD ,
+		S.MACADDR ,
+		S.LOGINSTATE ,
+		S.LOGINDATE
+	</sql>
+
+	<select id="selectKALoginListCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT COUNT(*) FROM KALOGIN_INFO S
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="userId != null and userId !=''">
+				S.USERID = #{userId}
+			</if>
+			<if test="bankCd != null and bankCd !=''">
+				S.BANKCD = #{bankCd}
+			</if>
+		</trim>
+		order by S.${orderBy}
+	</select>
+
+	<select id="selectKALoginList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT * FROM (
+		SELECT S.*,
+		ROWNUM AS RNUM,
+		FLOOR((ROWNUM-1)/${pageSize}+1) AS PAGE,
+		COUNT(*) OVER() AS TOTCNT FROM (
+		SELECT
+		<include refid="loginInfoColAS" />
+		FROM KALOGIN_INFO S
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="userId != null and userId !=''">
+				S.USERID = #{userId}
+			</if>
+		</trim>
+		order by S.${orderBy}
+		) S
+		) WHERE 1 = 1
+		<if test="pageNo != null and pageNo !=''">
+			AND PAGE = ${pageNo}
+		</if>
+	</select>
+
+
+
+</mapper>

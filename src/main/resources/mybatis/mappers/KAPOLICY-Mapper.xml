@@ -182,7 +182,6 @@
 				A.NAME = #{name}
 			</if>
 
-
 		</trim>
 		<if test="sidx != null and sidx !=''">
 			order by A.${sidx} ${sord}
@@ -194,51 +193,7 @@
 		</if>
 	</select>
 
-	<!--<select id="selectKAUserListCount" parameterType="java.util.HashMap" resultType="int">
-		SELECT COUNT(*) FROM KAUSER A
-		<trim prefix="WHERE" prefixOverrides="AND |OR ">
-			<if test="name != null and name !=''">
-				A.NAME = #{name}
-			</if>
 
-			<if test="userId != null and userId !=''">
-				A.USERID = #{userId}
-			</if>
-
-		</trim>
-		<if test="sidx != null and sidx !=''">
-			order by A.${sidx} ${sord}
-		</if>
-	</select>
-
-	<select id="selectKAUserList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-		SELECT * FROM (
-		SELECT A.*,
-		ROWNUM AS RNUM,
-		FLOOR((ROWNUM-1)/${pageSize}+1) AS PAGE,
-		COUNT(*) OVER() AS TOTCNT FROM (
-		SELECT
-		<include refid="userColAS" />
-		FROM KAUSER A
-		<trim prefix="WHERE" prefixOverrides="AND |OR ">
-			<if test="name != null and name !=''">
-				A.NAME = #{name}
-			</if>
-
-			<if test="userId != null and userId !=''">
-				A.USERID = #{userId}
-			</if>
-
-		</trim>
-		<if test="sidx != null and sidx !=''">
-			order by A.${sidx} ${sord}
-		</if>
-		) A
-		) WHERE 1 = 1
-		<if test="page != null and page !=''">
-			AND PAGE = ${pageNo}
-		</if>
-	</select>-->
 
 	<select id="selectKAUserGrpMappingListCount" parameterType="java.util.HashMap" resultType="int">
 		SELECT COUNT(*) FROM KA_POLICY_GROUP_MAPPING A
