@@ -6,10 +6,12 @@
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" 
 	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 		">
 
@@ -17,7 +19,7 @@
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
-	
+	<context:annotation-config/>
 	<security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled" />
 
 	<mvc:interceptors>  
@@ -33,6 +35,8 @@
 		<beans:property name="cookieMaxAge" value="100000" />
 		<beans:property name="cookieSecure" value="false" />
 	</beans:bean>
+
+	<util:properties id="config" location="classpath:/mybatis/application-properties.xml"/>
 
 	<!-- Multi language
 	<beans:bean id="messageSource"
@@ -55,4 +59,10 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	<context:component-scan base-package="com.ksign.access" />
+
+	<beans:bean id="serviceRequestFactory" class= "org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
+		<beans:property name="targetBeanName" value="resultObject"/>
+	</beans:bean>
+
+
 </beans:beans>
