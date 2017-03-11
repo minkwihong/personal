@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
-@RequestMapping("/session")
-public class SessionController {
+@RequestMapping("/login")
+public class LoginController {
 	
 	@RequestMapping(value = "/{serviceId}", method = RequestMethod.GET)
 	public ModelAndView accessLog(HttpServletRequest request, HttpServletResponse response) {
