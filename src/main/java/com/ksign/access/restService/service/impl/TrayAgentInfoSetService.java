@@ -42,7 +42,7 @@ public class TrayAgentInfoSetService extends RsApiTemplateRequest {
 
         StringBuffer sb = new StringBuffer();
 
-        restRepo.deleteCurrLoginUser(reqData);
+        //restRepo.deleteCurrLoginUser(reqData);
 
         reqData.put("resultCode","T");
 
@@ -55,6 +55,7 @@ public class TrayAgentInfoSetService extends RsApiTemplateRequest {
 
             String agentUrl = agentInfo.m_logoutUrl;
 
+
             String scheme = agentUrl.substring(0, agentUrl.indexOf("//"));
             String next = agentUrl.substring(agentUrl.indexOf("//") + 2);
 
@@ -64,14 +65,14 @@ public class TrayAgentInfoSetService extends RsApiTemplateRequest {
             sb.append(gid).append("|").append(scheme).append("//").append(host).append("|").append(logoutUri).append("$");
         }
 
-        log.info("agent info : " + sb.toString());
+        log.debug("initialize Agent info tray set ==> " + sb.toString());
 
         RsResultObject.setResultBody(sb.toString());
     }
 
     @Override
     public void paramSet() {
-        reqData.put("auditType", RsServiceType.TRAYLOGOUTPOSTSERVICE.getClientType());
-        reqData.put("eventCode", RsServiceType.TRAYLOGOUTPOSTSERVICE.getEventType());
+        reqData.put("auditType", RsServiceType.TRAYAGENTINFOSETSERVICE.getClientType());
+        reqData.put("eventCode", RsServiceType.TRAYAGENTINFOSETSERVICE.getEventType());
     }
 }

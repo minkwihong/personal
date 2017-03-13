@@ -51,15 +51,15 @@ public class DupLoginVerify extends VerifyTemplate {
                     HttpRsClient http = new HttpRsClient(beforeIp,port);
                     http.targetCall(target,trayData);
                     String obj = (String) http.getResData();
-                    log.debug("obj : " + obj.toString());
 
+                    log.debug("tray result ==>: " + obj.toString());
 
                     if("OK$".equals(obj)){
                         beforeUserMap = reqMap;
                         beforeUserMap.put("loginIp",beforeIp);
                         restRepo.deleteCurrLoginUser(beforeUserMap);
                         beforeUserMap.put("resultCode","T");
-                        beforeUserMap.put("eventCode","SE02"); // 예외적 중복로그인으로 인한 로그아웃
+                        beforeUserMap.put("eventCode","SE09"); // 예외적 중복로그인으로 인한 로그아웃
                         audit.registLoginAudit(beforeUserMap);
                     }
                 }
@@ -78,8 +78,11 @@ public class DupLoginVerify extends VerifyTemplate {
         sb.append(del);
         sb.append("client_ip=");
         sb.append(map.get("loginIp"));
+        sb.append(del);
+        sb.append("bankCd=");
+        sb.append(map.get("bankCd"));
 
-        ;log.info("data : " + sb.toString());
+        ;log.info("dupTrayReqData ==> " + sb.toString());
 
         return sb.toString();
     }

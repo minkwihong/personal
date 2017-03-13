@@ -63,6 +63,8 @@ public class TrayEventPostService extends RsApiTemplateRequest {
                 reqData.put("userId",paramValue);
             else if (paramKey.equals("MAC_ADDR"))
                 reqData.put("macAddr",paramValue);
+            else if (paramKey.equals("BANKCD"))
+                reqData.put("bankCd",paramValue);
             else if (paramKey.equals("LOGIN_STATE"))
                 reqData.put("loginState",paramValue);
             else if (paramKey.equals("CP"))
@@ -72,14 +74,12 @@ public class TrayEventPostService extends RsApiTemplateRequest {
             else if (paramKey.equals("CONDITION"))
                 if(paramValue.equals("LOGIN")){
                     reqData.put("eventCode","SE01");
-                    restRepo.insertCurrLoginAuditVerify(reqData);
                 }else if(paramValue.equals("SSO")){
                     reqData.put("eventCode","SE03");
                 }else if(paramValue.equals("LOGOUT")){
                     reqData.put("eventCode","SE02");
-                    restRepo.deleteCurrLoginUser(reqData);
                 }else{
-                    throw new ServiceException("this is not eventCode... ");
+                    throw new ServiceException("this is not exist eventCode... ");
                 }
         }
 
@@ -90,6 +90,12 @@ public class TrayEventPostService extends RsApiTemplateRequest {
     public void postValidationService()  {
         log.info("================ TrayEventPostService postValidationService start ======================");
 
+        if("SE01".equals(reqData.get("eventCode"))){ // 로그인
+            restRepo.insertCurrLoginAuditVerify(reqData);
+        }else if("SE02".equals(reqData.get("eventCode"))){  //로그아웃
+            restRepo.deleteCurrLoginUser(reqData);
+        }else if("SE03".equals(reqData.get("eventCode"))){}else{}// SSO 발생
+
         reqData.put("resultCode","T");
         audit.registLoginAudit(reqData);
 
@@ -98,5 +104,5 @@ public class TrayEventPostService extends RsApiTemplateRequest {
     }
 
     @Override
-    public void paramSet() {reqData.put("auditType", RsServiceType.TRAYLOGINPOSTSERVICE.getClientType());}
+    public void paramSet() {reqData.put("auditType", RsServiceType.TRAYEVENTPOSTSERVICE.getClientType());}
 }

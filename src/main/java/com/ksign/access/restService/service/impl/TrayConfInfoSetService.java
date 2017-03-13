@@ -31,6 +31,9 @@ public class TrayConfInfoSetService extends RsApiTemplateRequest {
     @Value("#{config['conf.duplicateCheckInterval']}")
     private  String duplicateCheckInterval ;
 
+    @Value("#{config['conf.trayTimeout']}")
+    private  String trayTimeout ;
+
     @Override
     public void requestParamValidation() throws RequestParamException {
 
@@ -47,7 +50,10 @@ public class TrayConfInfoSetService extends RsApiTemplateRequest {
 
         String result = "LiveCheckInterval=" + liveCheckInterval + "$" +
                 "EmergencyInterval=" + emergencyInterval + "$" +
-                "DuplicateCheckInterval=" + duplicateCheckInterval + "$";
+                "DuplicateCheckInterval=" + duplicateCheckInterval + "$" +
+                "TrayTimeout=" + trayTimeout + "$";
+
+        log.debug("trayConfigSet ==> " + result);
 
         RsResultObject.setResultBody(result);
     }

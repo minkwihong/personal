@@ -59,10 +59,10 @@ public class RsServiceDispacher {
             case NONCEVALIDATIONSERVICE:
                 beanName = "nonceValidationService";
                 break;
-            case TRAYLOGINPOSTSERVICE:
+            case TRAYEVENTPOSTSERVICE:
                 beanName = "trayEventPostService";
                 break;
-            case TRAYLOGOUTPOSTSERVICE:
+            case TRAYAGENTINFOSETSERVICE:
                 beanName = "trayAgentInfoSetService";
                 break;
             case INITIALLOGINSERVICE:
