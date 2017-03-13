@@ -6,18 +6,6 @@
 <title>KSignAccess | Admin List</title>
 </head>
 <style>
-	#progress
-	{
-		position: absolute;
-		width: 500px;
-		height: 500px;
-		left: 50%;
-		top: 50%;
-		margin-left: -250px;
-		margin-top: -250px;
-		border: #000 solid 1px;
-
-	}
 
 </style>
 <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
@@ -43,8 +31,7 @@
 
 			<!-- Main content -->
 			<section class="content">
-
-				<div class="row">
+                <div class="row">
 					<div class="col-md-12">
 						<div class="box">
 							<div class="box-header with-border">
@@ -92,7 +79,7 @@
 							</div>
 
 							<div class="box-footer clearfix">
-								<button id="regist" type="submit" class="btn btn-info pull-right">regist</button>
+								<button id="regist" type="button" class="btn btn-info pull-right">regist</button>
 								<div class="text-center" style="width: 100%; padding-left: 66px;">
 									<ul class="pagination" id="listPagination">
 									</ul>
@@ -111,22 +98,20 @@
 
 	<%@ include file="/WEB-INF/views/inc/base_js.jsp"%>
 
-	<div class="progress" id="progress" style="visibility:hidden">
-		<div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-			<span class="sr-only">40% Complete (success)</span>
-		</div>
-	</div>
+
 	<script>
 		var pageSize = 20;
         var adminService = new commonService();
-        var obj = {
-            context : getContextPath(),
-            methodId : "adminList",
-            callBackFnc : "initSucess"
-        }
+
 
 		$(document).ready(function() {
+
 			setApiUrl("/api");
+            var obj = {
+                context : "/admin",
+                methodId : "adminList",
+                callBackFnc : "initSucess"
+            }
 
 			adminService.search(obj);
 
@@ -203,7 +188,7 @@
 				var t_row = "<tr>\n" + "  <td>" + (idx_b--) + "</td>\n" +
 
 				"  <td><a href='" + a_link + "'>" + objList[i].userId	+ "</a></td>\n" +
-				"  <td><a href='" + a_link + "'>" + isNull(objList[i].name) + "</a></td>\n" +
+				"  <td>" + isNull(objList[i].name) + "</td>\n" +
 				"  <td>" + objList[i].passwordReset	+ "</td>\n" + 
 				"  <td>" + isNull(objList[i].deactivated) + "</td>\n" +
 				"  <td>" + isNull(objList[i].allowedIp) + "</td>\n" +

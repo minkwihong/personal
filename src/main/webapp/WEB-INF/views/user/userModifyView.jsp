@@ -36,13 +36,13 @@
 							<div class="box-body">
 								<form id="modifyForm" name="modifyForm" class="form-horizontal">
 								<div class="form-group">
-										<label for="inputEmail3" class="col-sm-2 control-label">userID</label>
+										<label for="Email" class="col-sm-2 control-label">userID</label>
 											<div class="col-sm-10">
 												<input readOnly type="text" class="form-control" id="userId" name="userId"  placeholder="Email">
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="inputEmail3" class="col-sm-2 control-label">name</label>
+											<label for="Email" class="col-sm-2 control-label">name</label>
 											<div class="col-sm-10">
 												<input type="text" class="form-control" id="name" name="name" placeholder="Email">
 											</div>
@@ -102,8 +102,8 @@
 							</div>
 							 
 							<div class="box-footer clearfix">
-								<button id="cancel" type="submit" class="btn btn-default">Cancel</button>
-                				<button id="modified" type="submit" class="btn btn-info pull-right">modified</button>
+								<button id="cancel" type="button" class="btn btn-default">Cancel</button>
+                				<button id="modified" type="button" class="btn btn-info pull-right">modified</button>
 							</div>
 							
 						</div>
@@ -128,7 +128,7 @@
 
 			var userService = new commonService();
             var obj ={
-                context : getContextPath(),
+                context : "/user",
                 methodId : "userInfo",
                 callBackFnc : "initSucess",
                 keyName : "userId",
@@ -137,7 +137,7 @@
             userService.search(obj);
 			
 		 	$("#modified").click(function(){
-                userService.modify(getContextPath(), "user", "modifyForm");
+                userService.modify('/user', "user", "modifyForm");
 		 	}); 
 		 	
 		 	$("#cancel").click(function(){

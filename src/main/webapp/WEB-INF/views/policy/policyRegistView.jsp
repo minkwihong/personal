@@ -77,8 +77,8 @@
 							 
 							<div class="box-footer clearfix">
 
-								<button id="cancel" type="submit" class="btn btn-default">Cancel</button>
-                				<button id="regist" type="submit" class="btn btn-info pull-right">regist</button>
+								<button id="cancel"  class="btn btn-default">Cancel</button>
+                				<button id="regist"  class="btn btn-info pull-right">regist</button>
 								<button id="dup" type="button" class="btn btn-danger">dup</button>
 							</div>
 							

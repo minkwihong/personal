@@ -76,7 +76,7 @@
 		$(document).ready(function() {
 			setApiUrl("/api");
             var obj ={
-                context : getContextPath(),
+                context : "/policy",
                 methodId : "policyGrpInfo",
                 callBackFnc : "initSucess",
                 keyName : "name",
@@ -86,7 +86,7 @@
             adminService.search(obj);
 			
 		 	$("#modified").click(function(){
-                adminService.modify(getContextPath(),"policyGrp","modifyForm");
+                adminService.modify("/policy","policyGrp","modifyForm");
 		 	}); 
 		 	
 		 	$("#cancel").click(function(){

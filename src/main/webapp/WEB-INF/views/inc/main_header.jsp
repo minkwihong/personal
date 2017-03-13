@@ -1,7 +1,12 @@
  <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+ <script>
+    function button1_click(){
+
+    }
+ </script>
  <header class="main-header">
     <!-- Logo -->
-    <a href="/main/main.do" class="logo">
+    <a href="${pageContext.request.contextPath}/main/main.do" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>K</b>A</span>
       <!-- logo for regular state and mobile devices -->
@@ -18,13 +23,13 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Notifications: style can be found in dropdown.less -->
-          <%--<li class="dropdown notifications-menu">
+          <li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">10</span>
+              <span class="label label-warning">1</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
+              <li class="header">notifications</li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
@@ -33,32 +38,11 @@
                       <i class="fa fa-users text-aqua"></i> 5 new members joined today
                     </a>
                   </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                      page and may cause design problems
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-red"></i> 5 new members joined
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-user text-red"></i> You changed your username
-                    </a>
-                  </li>
                 </ul>
               </li>
-              <li class="footer"><a href="#">View all</a></li>
+              <li class="footer"></li>
             </ul>
-          </li>--%>
+          </li>
           <!-- Tasks: style can be found in dropdown.less -->
           <%--<li class="dropdown tasks-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -136,13 +120,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="/resources/images/admin.jpg" class="user-image" alt="User Image">
+              <img src="${pageContext.request.contextPath}/resources/images/admin.jpg" class="user-image" alt="User Image">
               <span class="hidden-xs"> <sec:authentication property="principal.username"/></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="/resources/images/admin.jpg" class="img-circle" alt="User Image">
+                <img src="${pageContext.request.contextPath}/resources/images/admin.jpg" class="img-circle" alt="User Image">
 
                 <p>
                   <sec:authentication property="principal.username"/>
@@ -151,7 +135,7 @@
               </li>
               <!-- Menu Body -->
               <li class="user-body">
-                <div class="row">
+                <%--<div class="row">
                   <div class="col-xs-4 text-center">
                     <a href="#">Followers</a>
                   </div>
@@ -161,22 +145,48 @@
                   <div class="col-xs-4 text-center">
                     <a href="#">Friends</a>
                   </div>
-                </div>
+                </div>--%>
                 <!-- /.row -->
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <button  class="btn btn-default btn-flat" data-toggle="modal" data-target="#profileModal" >Profile</button>
                 </div>
                 <div class="pull-right">
-                  <a href="/logout" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="${pageContext.request.contextPath}/logout" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
           </li>
         </ul>
       </div>
-
     </nav>
   </header>
+
+ <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel">
+   <div class="modal-dialog" role="document">
+     <div class="modal-content">
+       <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+         <h4 class="modal-title" id="profileModalLabel">adminInfo</h4>
+       </div>
+       <div class="modal-body">
+         <form>
+           <div class="form-group">
+             <label for="admin" class="form-control-label">admin</label>
+             <input type="text" class="form-control" id="admin" readonly value="<sec:authentication property="principal.username"/>">
+           </div>
+           <div class="form-group">
+             <label for="password" class="form-control-label">password</label>
+             <input type="text" class="form-control" id="password">
+           </div>
+         </form>
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         <button type="button" class="btn btn-primary">Save changes</button>
+       </div>
+     </div>
+   </div>
+ </div>

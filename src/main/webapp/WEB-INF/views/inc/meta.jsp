@@ -11,7 +11,7 @@
 <META http-equiv="Cache-Control" content="No-Cache">
 
 <!-- Bootstrap 3.3.6 -->
-<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css">
 
 <%--<link rel="stylesheet" href="/resources/ext/bootstrap.min.css">--%>
 <!-- Font Awesome -->
@@ -19,27 +19,27 @@
 <!-- Ionicons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 <!-- jvectormap -->
-<link rel="stylesheet" href="/resources/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
 <!-- Theme style -->
 
-<link rel="stylesheet" href="/resources/bootstrap/css/AdminLTE.min.css">
-<link rel="stylesheet" href="/resources/bootstrap/css/skins/_all-skins.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap/css/AdminLTE.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap/css/skins/_all-skins.min.css">
 <!-- iCheck -->
-<link rel="stylesheet" href="/resources/plugins/iCheck/square/blue.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/iCheck/square/blue.css">
 
 <%--<link rel="stylesheet" type="text/css" media="screen" href="/resources/jqgrid/css/jquery-ui.css" />--%> <!--jqgrid 수정-->
 <%--<link rel="stylesheet" type="text/css" media="screen" href="/resources/jqgrid/css/trirand/ui.jqgrid.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="/resources/jqgrid/css/trirand/jqGrid.overrides.css" /> <!--jqgrid 수정추가-->--%>
 <%--<link rel="stylesheet" type="text/css" media="screen" href="/resources/jqgrid/css/trirand/jquery-ui-1.10.3.custom.css" />--%> <!--jqgrid 수정추가-->
 
-<link rel="stylesheet" type="text/css" media="screen" href="/resources/ext/jquery-ui-1.10.3.custom.css" /> <!--jqgrid 수정추가-->
+<link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/resources/ext/jquery-ui-1.10.3.custom.css" /> <!--jqgrid 수정추가-->
 
-<link rel="stylesheet" type="text/css" media="screen" href="/resources/ext/jqGrid.overrides.css" /> <!--jqgrid 수정추가-->
-<link rel="stylesheet" type="text/css" media="screen" href="/resources/ext/ui.jqgrid.css" /> <!--jqgrid 수정추가-->
+<link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/resources/ext/jqGrid.overrides.css" /> <!--jqgrid 수정추가-->
+<link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/resources/ext/ui.jqgrid.css" /> <!--jqgrid 수정추가-->
 
 
 <!-- Morris charts -->
-<link rel="stylesheet" href="/resources/plugins/morris/morris.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/morris/morris.css">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

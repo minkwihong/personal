@@ -98,7 +98,7 @@
 		$(document).ready(function() {
 			setApiUrl("/api");
             var obj ={
-                context : getContextPath(),
+                context : "/policy",
                 methodId : "policyInfo",
                 callBackFnc : "initSucess",
                 keyName : "name",
@@ -109,7 +109,7 @@
             policyService.search( obj);
 			
 		 	$("#modified").click(function(){
-                policyService.modify(getContextPath(),"policy","modifyForm");
+                policyService.modify("/policy","policy","modifyForm");
 		 	}); 
 		 	
 		 	$("#cancel").click(function(){

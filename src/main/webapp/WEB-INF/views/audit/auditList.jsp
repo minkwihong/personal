@@ -40,7 +40,8 @@
 							</div>
 							<div class="box-body">
 							<%--<form class="form-search" id="f">--%>
-									<input type="hidden" id="curPage" value="1"> <input type="hidden" id="sortType" value="auditOid" data-sorttype="desc">
+									<input type="hidden" id="curPage" value="1">
+									<input type="hidden" id="sortType" value="userId" data-sorttype="desc">
 
 									<div class="row">
 										<div class="col-xs-3 col-sm-3">
@@ -63,15 +64,14 @@
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>oid <i class="fa fa-sort-desc" id="oidSort" data-value="desc"></i></th>
 											<th>event_date</th>
-											<th>userId</th>
+											<th>userId<i class="fa fa-sort-desc" id="oidSort" data-value="desc"></i></th>
 											<th>clientIp</th>
 											<th>audit_type</th>
 											<th>event_code</th>
 											<th>resultCode</th>
 											<th>serverName</th>
-											<th>authenMethod</th>
+											<%--<th>authenMethod</th>--%>
 										</tr>
 									</thead>
 									<tbody>
@@ -100,11 +100,12 @@
 	<%@ include file="/WEB-INF/views/inc/base_js.jsp"%>
 	<script>
 		var pageSize = 20;
-        var auditService = new commonService();
+     var auditService = new commonService();
+
 		$(document).ready(function() {
 			setApiUrl("/api");
 			var obj = {
-			    context : getContextPath(),
+			    context : "/audit",
 				methodId : "auditList",
 				callBackFnc : "initSucess"
 			}
@@ -126,7 +127,7 @@
 				$("#oidSort").removeAttr("data-value");
 				$("#oidSort").attr("data-value", sort);
 
-				$("#sortType").val("auditOid");
+				$("#sortType").val("userId");
 				$("#sortType").attr("data-sorttype", sort);
 
                 auditService.search(obj);
@@ -182,15 +183,15 @@
 
 				var t_row = "<tr>\n" + "  <td>" + (idx_b--) + "</td>\n" +
 
-				"  <td>" + objList[i].auditOId	+ "</td>\n" +
 				"  <td>" + objList[i].event_date + "</td>\n" +
 				"  <td>" + userId	+ "</td>\n" + 
 				"  <td>" + objList[i].clientIp + "</td>\n" +
 				"  <td>" + objList[i].audit_type + "</td>\n" + 
 				"  <td>" + objList[i].event_code + "</td>\n" +
 				"  <td>" + objList[i].resultCode + "</td>\n" +
-				"  <td>" + objList[i].serverName + "</td>\n" +
-				"  <td>" + objList[i].authenMethod + "</td>\n" + "</tr>\n";
+				"  <td>" + objList[i].serverName + "</td>\n"
+				/*"  <td>" + objList[i].authenMethod + "</td>\n" + "</tr>\n"*/
+					;
 				t_rows += t_row;
 			}
 

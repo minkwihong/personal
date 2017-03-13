@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,12 +64,13 @@
 
 
 <!-- jQuery 2.2.3 -->
-<script src="/resources/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
-<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 
+<script src="${pageContext.request.contextPath}/resources/js/util.js"></script>
 <!-- iCheck -->
-<script src="/resources/plugins/iCheck/icheck.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/plugins/iCheck/icheck.min.js"></script>
 <script src="http://cdn.jsdelivr.net/parsleyjs/2.0.0-rc4/parsley.min.js"></script>
 <script>
 $(document).ready(function() {
@@ -82,7 +85,7 @@ $(document).ready(function() {
 	$("#loginBtn").click(function() {
 
 		$.ajax({
-			url : '/admin/login.ajax',
+			url : '${pageContext.request.contextPath}/login.ajax',
 			type : 'POST',
 			data : 'adminId=' + $("#adminId").val() + '&passwd='
 					+ $("#passwd").val() + '&remember-me='

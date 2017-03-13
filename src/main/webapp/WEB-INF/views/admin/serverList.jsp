@@ -75,7 +75,7 @@
 							</div>
 
 							<div class="box-footer clearfix">
-								<button id="regist" type="submit" class="btn btn-info pull-right">regist</button>
+								<button id="regist" type="button" class="btn btn-info pull-right">regist</button>
 								<div class="text-center" style="width: 100%; padding-left: 66px;">
 									<ul class="pagination" id="listPagination">
 									</ul>

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -232,7 +233,7 @@
                      <!-- AREA CHART -->
                      <div class="box box-primary">
                          <div class="box-header with-border">
-                             <h3 class="box-title">연도 별 각 Agent 접속자 통계 </h3>
+                             <h3 class="box-title">연도 별 각 시스템 접속자 통계 </h3>
 
                              <div class="box-tools pull-right">
                                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -256,7 +257,7 @@
                      <!-- LINE CHART -->
                      <div class="box box-danger">
                          <div class="box-header with-border">
-                             <h3 class="box-title">Agent 별 총접속자수 통계</h3>
+                             <h3 class="box-title">시스템 별 총접속자수 통계</h3>
 
                              <div class="box-tools pull-right">
                                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -289,10 +290,10 @@
 
 
 <%@ include file="/WEB-INF/views/inc/base_js.jsp" %>
-<script src="/resources/plugins/chartjs/Chart.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/plugins/chartjs/Chart.min.js"></script>
 
 <!-- AdminLTE for demo purposes -->
-<script src="/resources/bootstrap/js/demo.js"></script>
+<script src="${pageContext.request.contextPath}/resources/bootstrap/js/demo.js"></script>
 <script>
 
 $(document).ready(function() {

@@ -99,8 +99,8 @@
 							</div>
 							 
 							<div class="box-footer clearfix">
-								<button id="cancel" type="submit" class="btn btn-default">Cancel</button>
-                				<button id="modified" type="submit" class="btn btn-info pull-right">modified</button>
+								<button id="cancel" type="button" class="btn btn-default">Cancel</button>
+                				<button id="modified" type="button" class="btn btn-info pull-right">modified</button>
 							</div>
 							
 						</div>

@@ -3,7 +3,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/inc/meta.jsp"%>
-<title>KSignAccess | dupSession List</title>
+<title>KSignAccess | Current AccessUser List</title>
 </head>
 <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
 	<div class="wrapper">
@@ -18,10 +18,10 @@
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
-				<h1>DupSessionList</h1>
+				<h1>Current AccessUser</h1>
 				<ol class="breadcrumb">
 					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-					<li class="active">DupSessionList</li>
+					<li class="active">Current AccessUser</li>
 				</ol>
 			</section>
 
@@ -31,17 +31,17 @@
 					<div class="col-md-12">
 						<div class="box">
 							<div class="box-header with-border">
-								<h3 class="box-title">KSignAccess DupSession List</h3>
+								<h3 class="box-title">KSignAccess Current AccessUser</h3>
 							</div>
 							<div class="box-body">
 							<%--<form class="form-search" id="f">--%>
 									<input type="hidden" id="curPage" value="1">
-									<input type="hidden" id="sortType" value="login_Id" data-sorttype="desc">
+									<input type="hidden" id="sortType" value="userId" data-sorttype="desc">
 
 									<div class="row">
 										<div class="col-xs-3 col-sm-3">
 											<div class="input-group input-group-sm">
-												<input type="text" class="form-control" id="s_value" name="s_value" placeholder="loginId">
+												<input type="text" class="form-control" id="s_value" name="s_value" placeholder="userId">
 												<span class="input-group-btn">
                       								<button type="button" id="s_btn" class="btn btn-info btn-flat">search</button>
                     								</span>
@@ -57,14 +57,13 @@
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>loginId <i class="fa fa-sort-desc" id="loginIdSort" data-value="desc"></i></th>
+											<th>bankCd</th>
+											<th>userId<i class="fa fa-sort-desc" id="userIdSort" data-value="desc"></i></th>
+											<th>gid</th>
 											<th>loginIp</th>
-											<th>loginSession</th>
-											<th>loginType</th>
-											<th>loginGid</th>
-											<th>status</th>
-											<th>modDate</th>
-											<th>loginGids</th>
+											<th>macAddr</th>
+											<th>loginState</th>
+											<th>loginDate</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -94,40 +93,40 @@
 	<script>
 		var pageSize = 20;
         var obj = {
-			context : getContextPath(),
-			methodId : "dupSessionList",
+			context : "/login",
+			methodId : "loginList",
 			callBackFnc : "initSucess"
 		}
-        var sessionService = new commonService();
+        var loginService = new commonService();
 
 		$(document).ready(function() {
 			setApiUrl("/api");
 
-			sessionService.search(obj);
+            loginService.search(obj);
 
-			$("#loginIdSort").click(function() {
-				var sort = $("#loginIdSort").attr("data-value");
+			$("#userIdSort").click(function() {
+				var sort = $("#userIdSort").attr("data-value");
 				if (sort == "desc") {
 					sort = "asc";
-					$("#loginIdSort").removeClass("fa-sort-desc");
-					$("#loginIdSort").addClass("fa-sort-asc");
+					$("#userIdSort").removeClass("fa-sort-desc");
+					$("#userIdSort").addClass("fa-sort-asc");
 				} else {
 					sort = "desc";
-					$("#loginIdSort").addClass("fa-sort-desc");
-					$("#loginIdSort").removeClass("fa-sort-asc");
+					$("#userIdSort").addClass("fa-sort-desc");
+					$("#userIdSort").removeClass("fa-sort-asc");
 				}
 
-				$("#loginIdSort").removeAttr("data-value");
-				$("#loginIdSort").attr("data-value", sort);
+				$("#userIdSort").removeAttr("data-value");
+				$("#userIdSort").attr("data-value", sort);
 
 				$("#sortType").val("login_Id");
 				$("#sortType").attr("data-sorttype", sort);
 
-                sessionService.search(obj);
+                loginService.search(obj);
 			});
 
             $("#s_btn").click(function(){
-                sessionService.search(obj);
+                loginService.search(obj);
             });
 
             $("#s_value").keyup(function(event){
@@ -139,7 +138,7 @@
 
 		function movePage(pageNo) {
 			$("#curPage").val(pageNo);
-            sessionService.search(obj);
+            loginService.search(obj);
 		}
 
 		function initSucess(result) {
@@ -166,22 +165,17 @@
 			var t_rows = "";
 			for (var i = 0; i < objList.length; i++) {
 				//var auditOid = _highlight(objList[i].auditOid, "", "orange");
-				var userId = _highlight(_omit(objList[i].loginId, 40), "", "orange");
-				var title = isNull(objList[i].loginIp);
-				var a_link = "adminModifyView.do?x="
-						+ encodeURI(encodeURIComponent(objList[i].loginId));
+				var userId = _highlight(_omit(objList[i].userId, 40), "", "orange");
 
 				var t_row = "<tr>\n" + "  <td>" + (idx_b--) + "</td>\n" +
 
-				"  <td>" + isNull(objList[i].loginId)	+ "</td>\n" +
+				"  <td>" + isNull(objList[i].bankCd)	+ "</td>\n" +
+				"  <td>" + isNull(objList[i].userId) + "</td>\n" +
+				"  <td>" + isNull(objList[i].gid)	+ "</td>\n" +
 				"  <td>" + isNull(objList[i].loginIp) + "</td>\n" +
-				"  <td>" + isNull(objList[i].loginSession)	+ "</td>\n" +
-				"  <td>" + isNull(objList[i].loginType) + "</td>\n" +
-				"  <td>" + isNull(objList[i].loginGid) + "</td>\n" +
-				"  <td>" + title + "</td>\n" +
-                "  <td>" + isNull(objList[i].status) + "</td>\n" +
-				"  <td>" + isNull(objList[i].modDate) + "</td>\n" +
-                "  <td>" + isNull(objList[i].loginGids) + "</td>\n"
+				"  <td>" + isNull(objList[i].macAddr) + "</td>\n" +
+				"  <td>" + isNull(objList[i].loginState) + "</td>\n" +
+				"  <td>" + isNull(objList[i].loginDate) + "</td>\n"
 				"</tr>\n";
 				t_rows += t_row;
 			}

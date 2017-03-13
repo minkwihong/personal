@@ -3,7 +3,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/inc/meta.jsp"%>
-<title>KSignAccess | User List</title>
+<title>KSignAccess | UserList</title>
 </head>
 <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
 	<div class="wrapper">
@@ -31,7 +31,7 @@
 					<div class="col-md-12">
 						<div class="box">
 							<div class="box-header with-border">
-								<h3 class="box-title">KSignAccess User List</h3>
+								<h3 class="box-title">KSignAccess UserList</h3>
 							</div>
 							<div class="box-body">
 							<%--<form  id="f">--%>
@@ -57,13 +57,13 @@
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>userId <i class="fa fa-sort-desc" id="userIdSort" data-value="desc"></i></th>
-											<th>name</th>
-											<th>passwordReset</th>
-											<th>oudn</th>
-											<th>title</th>
-											<th>lastLoginTime</th>
-											<th>policy</th>
+											<th>bankCd </th>
+											<th>userId<i class="fa fa-sort-desc" id="userIdSort" data-value="desc"></i></th>
+											<th>gid</th>
+											<th>loginState</th>
+											<th>finalLoginDate</th>
+											<th>accessPolicy</th>
+											<th>passwdPolicy</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -73,7 +73,7 @@
 							</div>
 
 							<div class="box-footer clearfix">
-								<button id="regist" type="submit" class="btn btn-info pull-right">regist</button>
+								<button id="regist" type="button" class="btn btn-info pull-right">regist</button>
 								<div class="text-center" style="width: 100%; padding-left: 66px;">
 									<ul class="pagination" id="listPagination">
 									</ul>
@@ -94,14 +94,15 @@
 	<script>
 		var pageSize = 20;
         var userService = new commonService();
-        var obj={
-            context : getContextPath(),
-            methodId : "userList",
-            callBackFnc : "initSucess"
-        }
+
 
 		$(document).ready(function() {
 			setApiUrl("/api");
+			 var obj={
+					context : "/user",
+					methodId : "userList",
+					callBackFnc : "initSucess"
+			 }
 
 			userService.search(obj);
 
@@ -125,7 +126,7 @@
 
                 userService.search(obj);
 			});
-			
+
 			$("#regist").click(function(){
 				registView();
 			});
@@ -139,6 +140,7 @@
                     $("#s_btn").click();
                 }
             });
+
 
 		});
 
@@ -167,27 +169,27 @@
 			$("#curPageNo").text(curPage);
 			$("#maxPageNo").text(maxPage);
 
-			
+
 			var t_rows = "";
 			for (var i = 0; i < objList.length; i++) {
 				//var auditOid = _highlight(objList[i].auditOid, "", "orange");
-				var userId = _highlight(_omit(objList[i].userId, 40), "", "orange");
+				var userId = _highlight(_omit(objList[i].bankCd, 40), "", "orange");
 				var title = isNull(objList[i].title) ;
 				var a_link = "userModifyView.do?x="
 						+ encodeURI(encodeURIComponent(objList[i].userId));
 
 				var t_row = "<tr>\n" + "  <td>" + (idx_b--) + "</td>\n" +
-
-				"  <td><a href='" + a_link + "'>" + objList[i].userId	+ "</a></td>\n" +
-				"  <td><a href='" + a_link + "'>" + isNull(objList[i].name) + "</a></td>\n" +
-				"  <td>" + isNull(objList[i].passwordReset)	+ "</td>\n" +
-				"  <td>" + isNull(objList[i].oudn) + "</td>\n" +
-				"  <td>" + title + "</td>\n" + 
-				"  <td>" + isNull(objList[i].lastLoginTime) + "</td>\n" +
-				"  <td><button type='button' class= 'btn btn-default'> <i class='fa fa-align-right'></i></button></td>\n" +
+				"  <td>" + isNull(objList[i].bankCd) + "</td>\n" +
+				"  <td>" + objList[i].userId	+ "</td>\n" +
+				"  <td>" + isNull(objList[i].gid) + "</td>\n" +
+				"  <td>" + isNull(objList[i].loginState) + "</td>\n" +
+				"  <td>" + isNull(objList[i].finalLoginDate) + "</td>\n" +
+				"  <td><button type='button' id='accessPolicy' class= 'btn btn-default'   > <i class='fa fa-align-right'></i></button></td>\n" +
+				"  <td><button type='button' id='passPolicy' class= 'btn btn-default' > <i class='fa fa-align-right'></i></button></td>\n" +
 				"</tr>\n";
 				t_rows += t_row;
 			}
+
 
 			$("#listTable tbody").remove();
 			$("#listTable").append("<tbody>\n" + t_rows + "</tbody>\n");
@@ -216,14 +218,57 @@
 
 			$("#listPagination li").remove();
 			$("#listPagination").html(p_rows);
+
+            $("#accessPolicy").click(function(){
+                $('#accessPolicyModal').modal({
+                    remote : 'accModalLayer'
+                });
+			})
+
+            $("#passPolicy").click(function(){
+                $('#passwdPolicyModal').modal({
+                    remote : 'pwModalLayer'
+                });
+			})
+
 		}
-		
+
 		function registView() {
 			var a_link = "userRegistView.do";
-			
+
 			location.href = a_link;
 		}
 	</script>
+
+		<div class="modal fade" id="accessPolicyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="passwdPolicyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="passwdPolicyModalLabel">Modal title</h4>
+					</div>
+					<div class="modal-body">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-md-4">.col-md-4</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
 </body>
 </html>
 

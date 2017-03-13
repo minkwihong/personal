@@ -41,8 +41,8 @@
 				</div>
 
 				<div id="jqGridDiv2" class="col-md-3 col-sm-6 col-xs-12"  >
-						<table id="jqGrid2"></table>
-						<div id="Pager2"></div>
+					<table id="jqGrid2"></table>
+					<div id="Pager2"></div>
 				</div>
 
 				<div class="col-md-3 col-sm-6 col-xs-12" id="jqGridDiv3">
@@ -54,6 +54,11 @@
 			</div>
 
 			<div class="row">
+
+				<div class="col-md-3 col-sm-6 col-xs-12" >
+
+				</div>
+
 				<div class="col-md-3 col-sm-6 col-xs-12" id="jqGridDiv4">
 					<table id="jqGrid4"></table>
 					<div id="Pager4"></div>
@@ -67,7 +72,7 @@
 
 			<button id="locRegist" class="btn btn-info pull-right">좌표 저장</button>
 		</section>
-                <!-- /.content -->
+		<!-- /.content -->
 
 
 
@@ -81,9 +86,9 @@
 
 <script>
 
-	$(document).ready(function() {
+    $(document).ready(function() {
 
-		$('#locRegist').click(function(){
+        $('#locRegist').click(function(){
             var jsonObj= "";
 
             jsonObj = objLocation();
@@ -96,40 +101,40 @@
         setDragnDrop();
 
         jQuery("#jqGrid1").jqGrid({
-            url : "/api/policy/policyGrpList",
+            url : "${pageContext.request.contextPath}/api/policy/policyGrpList",
             mtype : "GET",
             datatype: "JSON",
             jsonReader:{
                 page :'page', // 페이징을 위한
                 total:'total',
                 root:'list' //
-			},
+            },
             prmNames: {
                 page: "pageNo", rows: "pageSize"
             },
-			colNames: ['name', 'grpDesc'],
-			colModel: [
+            colNames: ['name', 'grpDesc'],
+            colModel: [
                 { label: 'name ', name: 'name',  width: 100 , key:true ,
                     searchoptions : { sopt:['cn']}
                 },
                 { label: 'grpDesc', name: 'grp_Desc', width: 100 }
             ],
-            caption: '[정책그룹]',
+            caption: '[접근정책그룹]',
             width: 300,
             height: 200,
             rowNum: 20,
             loadError: function(xhr, status, error){
                 alert("정책그룹목록 에러발생 : "+xhr.responseText);
             },
-           	/*onSelectRow: function(rowid, status, e) {
-            	alert("asdf : " + rowid + "/" + status);
-        	},*/
+			/*onSelectRow: function(rowid, status, e) {
+			 alert("asdf : " + rowid + "/" + status);
+			 },*/
             onSelectRow: grpMappingView,
-        pager: '#Pager1'
+            pager: '#Pager1'
         });
 
         jQuery("#jqGrid3").jqGrid({
-            url : "/api/policy/policyList",
+            url : "${pageContext.request.contextPath}/api/policy/policyList",
             datatype: "json",
             mtype : "GET",
             width: 300,
@@ -139,7 +144,7 @@
                 page :'page', // 페이징을 위한
                 total:'total',
                 root:'list' // map에 "list",list 넣으면 그 키값 써줘야 데이터 뿌려짐
-			},
+            },
             prmNames: {
                 page: "pageNo", rows: "pageSize"
             },
@@ -150,8 +155,8 @@
                 },
                 { label: 'pol_Desc', name: 'polDesc', width: 100 }
             ],
-            caption	: '[정책]',
-			pager: '#Pager3'
+            caption	: '[접근정책]',
+            pager: '#Pager3'
         });
 
         $("#jqGrid3")
@@ -159,7 +164,7 @@
             .jqGrid('setSelection', '3');
 
         jQuery("#jqGrid5").jqGrid({
-            url : "/api/user/userList",
+            url : "${pageContext.request.contextPath}/api/user/userList",
             datatype: "json",
             mtype : "GET",
             width: 300,
@@ -169,7 +174,7 @@
                 page :'page', // 페이징을 위한
                 total:'total',
                 root:'list', // map에 "list",list 넣으면 그 키값 써줘야 데이터 뿌려짐
-				rows: 'count'
+                rows: 'count'
             },
             prmNames: {
                 page: "pageNo", rows: "pageSize"
@@ -186,7 +191,7 @@
         });
 
 
-		$('#jqGrid1').jqGrid('filterToolbar');
+        $('#jqGrid1').jqGrid('filterToolbar');
 
         $('#jqGrid1').jqGrid('navGrid',"#Pager1", {
             search: false,
@@ -196,7 +201,7 @@
             refresh: true
         });
 
-       	$('#jqGrid3').jqGrid('filterToolbar');
+        $('#jqGrid3').jqGrid('filterToolbar');
 
         $('#jqGrid3').jqGrid('navGrid',"#Pager3", {
             search: false,
@@ -216,28 +221,28 @@
             refresh: true
         });
 
-		if(getCookie('location') != ''){
-		 	setGridPosition();
-		 }
-	});
+        if(getCookie('location') != ''){
+            setGridPosition();
+        }
+    });
 
     function grpMappingView(rowid, status, e){
         $('#jqGridDiv2').empty();
-		var a = $("<table>").attr("id", "jqGrid2");
+        var a = $("<table>").attr("id", "jqGrid2");
         var b = $("<div>").attr("id", "Pager2");
-		$("#jqGridDiv2").append(a);
+        $("#jqGridDiv2").append(a);
         $("#jqGridDiv2").append(b);
 
-		var paramObj ={
-		    name : rowid
-		};
-		jQuery("#jqGrid2").jqGrid({
-            url : "/api/policy/policyMappingList",
+        var paramObj ={
+            name : rowid
+        };
+        jQuery("#jqGrid2").jqGrid({
+            url : "${pageContext.request.contextPath}/api/policy/policyMappingList",
             mtype : "GET",
             datatype: "JSON",
-			postData: {
+            postData: {
                 group_Name : encodeURIComponent(rowid)
-			},
+            },
             jsonReader:{
                 page :'page', // 페이징을 위한
                 total:'total',
@@ -253,7 +258,7 @@
                 },
                 { label: 'policy_Name', name: 'policy_Name', width: 100 }
             ],
-            caption: '정책그룹매핑' + '[ ' + rowid + ' ] < - > 정책 ' ,
+            caption: '[ ' + rowid + '접근정책그룹 ]  < - [접근정책]' ,
             width: 300,
             height: 200,
             rowNum: 20,
@@ -279,21 +284,21 @@
                     ondrop : function(event, ui,getdata) {
 
                         $('#jqGrid3').trigger( 'reloadGrid' );
-						setApiUrl("/api");
+                        setApiUrl("/api");
                         var paramObj ={
                             grpName : rowid,
                             policyName : $(ui.draggable).attr("id")
-						}
+                        }
 
                         handlePost("/policy/registPolicyMapp",paramObj,function(){
                             $('#jqGrid2').trigger( 'reloadGrid' );
-						});
+                        });
 
                     }
                 });
-			},
+            },
             pager: '#Pager2'
-		})
+        })
 
 //===========================================================================================
 
@@ -307,7 +312,7 @@
             name : rowid
         };
         jQuery("#jqGrid4").jqGrid({
-            url : "/api/policy/userGrpMappingList",
+            url : "${pageContext.request.contextPath}/api/policy/userGrpMappingList",
             mtype : "GET",
             datatype: "JSON",
             postData: {
@@ -328,7 +333,7 @@
                 },
                 { label: 'user_id', name: 'user_id', width: 100 }
             ],
-            caption: '정책그룹매핑' + '[ ' + rowid + ' ] < - > 사용자' ,
+            caption: '[ ' + rowid + ' 접근정책그룹 ] < -  [사용자]' ,
             width: 300,
             height: 200,
             rowNum: 20,
@@ -370,24 +375,24 @@
             pager: '#Pager4'
         })
 
-	}
+    }
 
-	function setGridPosition(){
+    function setGridPosition(){
 
         var location = getCookie("location");
         var result = JSON.parse(location);
 
         $( "div[id*='jqGridDiv']" ).each(function (index, item) {
-           	var left = result[$(item).attr("id")].left;
-			var top = result[$(item).attr("id")].top;
+            var left = result[$(item).attr("id")].left;
+            var top = result[$(item).attr("id")].top;
 
 
             $("#" + $(item).attr("id")).offset({top: top, left: left});
         });
-	}
+    }
 
-	function setDragnDrop(){
-		$('#jqGridDiv1').draggable();
+    function setDragnDrop(){
+        $('#jqGridDiv1').draggable();
         $('#jqGridDiv3').draggable();
         $('#jqGridDiv4').draggable();
         $('#jqGridDiv5').draggable();
