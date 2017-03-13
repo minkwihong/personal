@@ -11,7 +11,7 @@ public class AdminPasswordEncoder implements PasswordEncoder {
 	@Override
 	public String encode(CharSequence rawPw) {
 		byte[] result = null;
-		
+
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
 			md.update(rawPw.toString().getBytes());
@@ -21,6 +21,7 @@ public class AdminPasswordEncoder implements PasswordEncoder {
 			String b64Hashed = new String(Base64.encode(result));
 
 			return b64Hashed;
+
 		} catch(Exception e) {
 		
 		}
