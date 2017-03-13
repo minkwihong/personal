@@ -136,7 +136,6 @@ public class AdminService<T> extends BaseService<T> {
 
 	private String adminRegist() {
 		KAAdminRepository adminRepo = (KAAdminRepository) getBeans("kaAdminRepo");
-		defaultParamMap.put("password", CommonUtil.passwordEncoder((String)defaultParamMap.get("password")));
 
 		count = adminRepo.registKAAdmin(defaultParamMap);
 		result.put("result" , count);

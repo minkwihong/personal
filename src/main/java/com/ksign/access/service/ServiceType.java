@@ -4,7 +4,7 @@ public enum ServiceType {
 	AUDIT("audit"),
 	USER("user"),
 	ADMIN("admin"),
-	SESSION("session"),
+	LOGIN("login"),
 	POLICY("policy"),
 	STATISTIC("statistic"),
 	EVAL("eval"),

@@ -1,9 +1,7 @@
 package com.ksign.access.service.impl;
 
-import com.ksign.access.domain.KAAuditVO;
-import com.ksign.access.domain.KASessionVO;
-import com.ksign.access.mapper.impl.KAAuditRepository;
-import com.ksign.access.mapper.impl.KASessionRepository;
+import com.ksign.access.domain.KALoginVO;
+import com.ksign.access.mapper.impl.KALoginRepository;
 import com.ksign.access.service.BaseService;
 import com.ksign.access.tool.DomainUtil;
 import org.springframework.stereotype.Service;
@@ -16,14 +14,14 @@ import java.util.HashMap;
 import java.util.List;
 
 @Service
-public class SessionService<T> extends BaseService<T> {
-	public SessionService() { }
+public class LoginService<T> extends BaseService<T> {
+	public LoginService() { }
 
 	//@Autowired
 	//KAAuditRepository auditRepo;
 
 
-	public SessionService(HttpServletRequest request, HttpServletResponse response, String postBody) throws IOException {
+	public LoginService(HttpServletRequest request, HttpServletResponse response, String postBody) throws IOException {
 		super(request, response, postBody);
 		
 		//auditRepo = (KAAuditRepository)
@@ -31,7 +29,7 @@ public class SessionService<T> extends BaseService<T> {
 
 	@Override
 	public String doService(String methodId) {
-		if(methodId.equals("dupSessionList")) {
+		if(methodId.equals("loginList")) {
 			return list();
 		} else {
 			return null;
@@ -39,18 +37,18 @@ public class SessionService<T> extends BaseService<T> {
 	}
 
 	private String list() {
-		KASessionRepository sessionRepo = (KASessionRepository) getBeans("kaSessionRepo");
+		KALoginRepository loginRepo = (KALoginRepository) getBeans("kaLoginRepo");
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		
-		result.put("count", sessionRepo.selectKADupSessionListCount(defaultParamMap));
+		result.put("count", loginRepo.selectKALoginListCount(defaultParamMap));
 		
-		List<HashMap<String, Object>> resultMapList = sessionRepo.selectKADupSessionList(defaultParamMap);
-		List<KASessionVO> adminVoList = new ArrayList<KASessionVO>();
+		List<HashMap<String, Object>> resultMapList = loginRepo.selectKALoginList(defaultParamMap);
+		List<KALoginVO> adminVoList = new ArrayList<KALoginVO>();
 
-		KASessionVO vo;
+		KALoginVO vo;
 		for(HashMap<String, Object> map: resultMapList) {
 			try {
-				vo = DomainUtil.convertMapToDomainVO(map, KASessionVO.class);
+				vo = DomainUtil.convertMapToDomainVO(map, KALoginVO.class);
 				adminVoList.add(vo);
 			} catch (IllegalAccessException e) {
 				// TODO Auto-generated catch block

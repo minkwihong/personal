@@ -23,8 +23,8 @@ public class ServiceTypeFactory {
 			return new UserService(request, response, postData);
 		case ADMIN:
 			return new AdminService(request, response, postData);
-		case SESSION:
-			return new SessionService(request, response, postData);
+		case LOGIN:
+			return new LoginService(request, response, postData);
 		case POLICY:
 			return new PolicyService(request, response, postData);
 		case STATISTIC:
